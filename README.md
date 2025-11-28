@@ -9,7 +9,6 @@
 > [!TIP]
 > These features are either implentmented or in the process of being implentmented.
 
-- [ ] Finalize Split Control
 - [ ] Rework Crafting + Crafting Inventory
 
 --- 
@@ -30,6 +29,7 @@
 - [x] Fixed Utility Inventory
 - [x] Added Backpack Inventory
 - [x] Reworked Storage Inventory
+- [x] Finalize Split Control
 
 --- 
 
