@@ -7,10 +7,19 @@ import { useAppSelector } from '../../store';
 import { selectLeftInventory } from '../../store/inventory';
 import { SlotWithItem } from '../../typings';
 import SlideUp from '../utils/transitions/SlideUp';
+import { getRarityKey, Rarity } from '../../store/rarity';
 
 const InventoryHotbar: React.FC = () => {
   const [hotbarVisible, setHotbarVisible] = useState(false);
-  const items = useAppSelector(selectLeftInventory).items.slice(0, 4);
+  const items = useAppSelector(selectLeftInventory).items.slice(0, 5);
+
+  const slotlabels = [
+    { slot: 1, label: 'Weapon Slot 1' },
+    { slot: 2, label: 'Weapon Slot 2' },
+    { slot: 3, label: 'Hotkey Slot 3' },
+    { slot: 4, label: 'Hotkey Slot 4' },
+    { slot: 5, label: 'Hotkey Slot 5' },
+  ]
 
   // stupid fix for timeout
   const [handle, setHandle] = useState<NodeJS.Timeout>();
@@ -23,15 +32,6 @@ const InventoryHotbar: React.FC = () => {
       setHandle(setTimeout(() => setHotbarVisible(false), 3000));
     }
   });
-
-  const rarityColors: Record<string, string> = {
-    common: 'rgba(171, 171, 171, 1)',
-    uncommon: 'rgba(162, 202, 49, 1)',
-    rare: 'rgba(54, 196, 174, 1)',
-    epic: 'rgba(179, 64, 220, 1)',
-    legendary: 'rgba(255, 173, 0, 1)',
-    mythic: 'rgba(255, 0, 82, 1)',
-  };
 
   const withAlpha = (color: string, alpha: number) => {
     return color.replace(/rgba?\(([^)]+)\)/, (match, contents) => {
@@ -49,9 +49,11 @@ const InventoryHotbar: React.FC = () => {
   return (
     <SlideUp in={hotbarVisible}>
       <div className="hotbar-container">
-        {items.map((item) => {
-          const rarityKey = (item?.rarity ?? '').toLowerCase();
-          const rarityColor = rarityColors[rarityKey];
+        {items.map((item, index) => {
+          const rarityKey = getRarityKey(item?.rarity) || 'common';
+          const rarityColor = Rarity[rarityKey] ?? Rarity.common;
+
+          const slotLabel = slotlabels.find(s => s.slot === item.slot)?.label || '';
 
           return (
             <div
@@ -79,6 +81,10 @@ const InventoryHotbar: React.FC = () => {
                   : 'inset 0px 0px 40px -10px rgba(0,0,0, 1)',
               }}
             >
+              <div className="hotbar-slot-label-above">
+                    {slotLabel}
+              </div>
+
               {isSlotWithItem(item) && (
                 <div className="item-slot-wrapper">
                   <div className="hotbar-slot-header-wrapper">
@@ -94,27 +100,20 @@ const InventoryHotbar: React.FC = () => {
                 `,
                       }}
                     >{item.slot}</div>
-                    <div className="item-slot-info-wrapper">
-                      <p>{item.count ? item.count.toLocaleString('en-us') + `x` : ''}</p>
+                    <div className='item-slot-header-wrapper'>
+                      {item.count && item.count > 1 && (
+                        <div className="item-slot-info-wrapper2">
+                          <p>{item.count ? item.count.toLocaleString('en-us') + `x` : ''}</p>
+                        </div>
+                      )}
                     </div>
-                    <div
-                      className="inventory-slot-rarity"
-                      style={{
-                        color: rarityColor
-                          ? `
-              ${withAlpha(rarityColor, 1)}
-            `
-                          : `
-              linear-gradient(135deg, rgba(255,255,255,0.336), rgba(0,0,0,0.589))
-            `,
-                      }}
-                    >
-                      {item.rarity}
+                    <div className="inventory-slot-rarity" style={{ color: rarityColor ? `${withAlpha(rarityColor, 1)}` : `linear-gradient(135deg, rgba(255,255,255,0.336), rgba(0,0,0,0.589))` }}>
+                      {item.rarity || 'common'}
                     </div>
                   </div>
                   <div>
                     {item?.durability !== undefined && (
-                      <WeightBar percent={item.durability} durability />
+                      <WeightBar percent={item.durability} rarityColor={rarityColor || undefined} durability />
                     )}
                     <div className="inventory-slot-label-box">
                       <div className="inventory-slot-label-text">

@@ -24,7 +24,7 @@ export const moveSlotsReducer: CaseReducer<
     weight: pieceWeight * count,
     slot: toSlot.slot,
     durability: itemDurability(fromItem.metadata, curTime),
-    rarity: fromItem.rarity, // ✅ behold rarity ved flytning
+    rarity: fromItem.rarity,
   };
 
   if (fromType === InventoryType.SHOP || fromType === InventoryType.CRAFTING) return;
@@ -32,12 +32,12 @@ export const moveSlotsReducer: CaseReducer<
   sourceInventory.items[fromSlot.slot - 1] =
     fromSlot.count - count > 0
       ? {
-          ...sourceInventory.items[fromSlot.slot - 1],
-          count: fromSlot.count - count,
-          weight: pieceWeight * (fromSlot.count - count),
-          rarity: fromItem.rarity, // ✅ behold rarity på den resterende del
-        }
+        ...sourceInventory.items[fromSlot.slot - 1],
+        count: fromSlot.count - count,
+        weight: pieceWeight * (fromSlot.count - count),
+        rarity: fromItem.rarity,
+      }
       : {
-          slot: fromSlot.slot,
-        };
+        slot: fromSlot.slot,
+      };
 };

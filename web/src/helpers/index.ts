@@ -4,6 +4,7 @@ import { store } from '../store';
 import { Items } from '../store/items';
 import { imagepath } from '../store/imagepath';
 import { fetchNui } from '../utils/fetchNui';
+import { isUtilitySlot } from '../utils/utilitySlotValidation';
 
 export const canPurchaseItem = (item: Slot, inventory: { type: Inventory['type']; groups: Inventory['groups'] }) => {
   if (inventory.type !== 'shop' || !isSlotWithItem(item)) return true;
@@ -53,6 +54,7 @@ export const canCraftItem = (item: Slot, inventoryType: string) => {
   if (!item.ingredients) return true;
   const leftInventory = store.getState().inventory.leftInventory;
   const backpackInventory = store.getState().inventory.backpackInventory;
+  const craftingInventory = store.getState().inventory.craftingInventory;
   const ingredientItems = Object.entries(item.ingredients);
 
   const remainingItems = ingredientItems.filter((ingredient) => {
@@ -60,6 +62,15 @@ export const canCraftItem = (item: Slot, inventoryType: string) => {
     const globalItem = Items[itemName];
 
     let totalCount = 0;
+
+    // Count in craftingInventory (priority)
+    if (craftingInventory && craftingInventory.items) {
+      craftingInventory.items.forEach((craftingItem) => {
+        if (isSlotWithItem(craftingItem) && craftingItem.name === itemName) {
+          totalCount += craftingItem.count ?? 1;
+        }
+      });
+    }
 
     // Count in leftInventory
     leftInventory.items.forEach((playerItem) => {
@@ -82,6 +93,15 @@ export const canCraftItem = (item: Slot, inventoryType: string) => {
     }
 
     const hasItem =
+      (craftingInventory &&
+        craftingInventory.items.find((craftingItem) => {
+          if (isSlotWithItem(craftingItem) && craftingItem.name === itemName) {
+            if (count < 1) {
+              if (craftingItem.metadata?.durability >= count * 100) return true;
+              return false;
+            }
+          }
+        })) ||
       leftInventory.items.find((playerItem) => {
         if (isSlotWithItem(playerItem) && playerItem.name === itemName) {
           if (count < 1) {
@@ -114,11 +134,14 @@ export const canStack = (sourceSlot: Slot, targetSlot: Slot) =>
   sourceSlot.name === targetSlot.name && isEqual(sourceSlot.metadata, targetSlot.metadata);
 
 export const findAvailableSlot = (item: Slot, data: ItemData, items: Slot[]) => {
-  if (!data.stack) return items.find((target) => target.name === undefined);
+  // Skip utility slots (1-9) when auto-finding slots, as they should be explicitly targeted
+  const nonUtilityItems = items.filter((target) => !isUtilitySlot(target.slot));
 
-  const stackableSlot = items.find((target) => target.name === item.name && isEqual(target.metadata, item.metadata));
+  if (!data.stack) return nonUtilityItems.find((target) => target.name === undefined);
 
-  return stackableSlot || items.find((target) => target.name === undefined);
+  const stackableSlot = nonUtilityItems.find((target) => target.name === item.name && isEqual(target.metadata, item.metadata));
+
+  return stackableSlot || nonUtilityItems.find((target) => target.name === undefined);
 };
 
 export const getTargetInventory = (
@@ -133,6 +156,10 @@ export const getTargetInventory = (
     sourceInventory = state.leftInventory;
   } else if (sourceType === InventoryType.BACKPACK) {
     sourceInventory = state.backpackInventory;
+  } else if (sourceType === InventoryType.CONTAINER && state.containerInventory) {
+    sourceInventory = state.containerInventory;
+  } else if (sourceType === InventoryType.CRAFTING_STORAGE && state.craftingInventory) {
+    sourceInventory = state.craftingInventory;
   } else {
     sourceInventory = state.rightInventory;
   }
@@ -142,6 +169,10 @@ export const getTargetInventory = (
       targetInventory = state.leftInventory;
     } else if (targetType === InventoryType.BACKPACK) {
       targetInventory = state.backpackInventory;
+    } else if (targetType === InventoryType.CONTAINER && state.containerInventory) {
+      targetInventory = state.containerInventory;
+    } else if (targetType === InventoryType.CRAFTING_STORAGE && state.craftingInventory) {
+      targetInventory = state.craftingInventory;
     } else {
       targetInventory = state.rightInventory;
     }
@@ -149,6 +180,10 @@ export const getTargetInventory = (
     if (sourceType === InventoryType.PLAYER) {
       targetInventory = state.rightInventory;
     } else if (sourceType === InventoryType.BACKPACK) {
+      targetInventory = state.leftInventory;
+    } else if (sourceType === InventoryType.CONTAINER) {
+      targetInventory = state.leftInventory;
+    } else if (sourceType === InventoryType.CRAFTING_STORAGE) {
       targetInventory = state.leftInventory;
     } else {
       targetInventory = state.leftInventory;

@@ -8,7 +8,7 @@ import { getItemUrl } from '../../helpers';
 import { SlotWithItem } from '../../typings';
 import { Items } from '../../store/items';
 import Fade from './transitions/Fade';
-import { Rarity } from '../../store/rarity';
+import { getRarityKey, Rarity } from '../../store/rarity';
 
 interface ItemNotificationProps {
   item: SlotWithItem;
@@ -29,9 +29,8 @@ const ItemNotification = React.forwardRef(
   (props: { item: ItemNotificationProps; style?: React.CSSProperties }, ref: React.ForwardedRef<HTMLDivElement>) => {
     const slotItem = props.item.item;
 
-    const rarityColors = Rarity
-    const rarityKey = (slotItem?.rarity ?? 'common').toLowerCase();
-    const rarityColor = rarityColors[rarityKey];
+    const rarityKey = getRarityKey(slotItem?.rarity) || 'common';
+    const rarityColor = Rarity[rarityKey] ?? Rarity.common;
 
     const withAlpha = (color: string, alpha: number) => {
       return color.replace(/rgba?\(([^)]+)\)/, (match, contents) => {

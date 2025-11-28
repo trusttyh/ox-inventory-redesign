@@ -31,6 +31,7 @@ const initialState: State = {
     maxWeight: 0,
     items: [],
   },
+  craftingInventory: undefined,
   additionalMetadata: new Array(),
   itemAmount: 0,
   shiftPressed: false,
@@ -78,6 +79,8 @@ export const inventorySlice = createSlice({
         leftInventory: current(state.leftInventory),
         rightInventory: current(state.rightInventory),
         backpackInventory: current(state.backpackInventory),
+        containerInventory: state.containerInventory ? current(state.containerInventory) : undefined,
+        craftingInventory: state.craftingInventory ? current(state.craftingInventory) : undefined,
       };
     });
     builder.addMatcher(isFulfilled, (state) => {
@@ -88,6 +91,8 @@ export const inventorySlice = createSlice({
         state.leftInventory = state.history.leftInventory;
         state.rightInventory = state.history.rightInventory;
         state.backpackInventory = state.history.backpackInventory;
+        state.containerInventory = state.history.containerInventory;
+        state.craftingInventory = state.history.craftingInventory;
       }
       state.isBusy = false;
     });
@@ -108,6 +113,8 @@ export const {
 export const selectLeftInventory = (state: RootState) => state.inventory.leftInventory;
 export const selectBackpackInventory = (state: RootState) => state.inventory.backpackInventory;
 export const selectRightInventory = (state: RootState) => state.inventory.rightInventory;
+export const selectContainerInventory = (state: RootState) => state.inventory.containerInventory;
+export const selectCraftingInventory = (state: RootState) => state.inventory.craftingInventory;
 export const selectItemAmount = (state: RootState) => state.inventory.itemAmount;
 export const selectIsBusy = (state: RootState) => state.inventory.isBusy;
 

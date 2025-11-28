@@ -1,13 +1,9 @@
 import { Inventory, SlotWithItem } from '../../typings';
 import React, { Fragment, useMemo } from 'react';
 import { Items } from '../../store/items';
-import { Locale } from '../../store/locale';
-import ReactMarkdown from 'react-markdown';
 import { useAppSelector } from '../../store';
-import ClockIcon from '../utils/icons/ClockIcon';
-import { getItemUrl, itemDurability } from '../../helpers';
-import Divider from '../utils/Divider';
-import { Rarity } from '../../store/rarity';
+import { getItemUrl } from '../../helpers';
+import { getRarityKey, getRarityDisplayName, Rarity } from '../../store/rarity';
 
 type EvidenceKey = 'blood' | 'casing'
 
@@ -30,8 +26,8 @@ const SlotTooltip: React.ForwardRefRenderFunction<
   const ammoName = itemData?.ammoName && Items[itemData?.ammoName]?.label;
 
   // 🔥 NEW: rarity integration
-  const rarityKey = (item?.rarity ?? '').toLowerCase();
-  const rarityColor = Rarity[rarityKey];
+  const rarityKey = getRarityKey(item?.rarity) || 'common';
+  const rarityColor = Rarity[rarityKey] ?? Rarity.common;
 
   const withAlpha = (color: string, alpha: number) => {
     return color.replace(/rgba?\(([^)]+)\)/, (match, contents) => {
@@ -123,7 +119,7 @@ const SlotTooltip: React.ForwardRefRenderFunction<
                 fontSize: '1vh',
                 fontWeight: '400',
               }}>
-                <span style={{ color: rarityColor, fontWeight: '600', textTransform: 'capitalize' }}>{item.rarity || 'common'}</span>
+                <span style={{ color: rarityColor, fontWeight: '600', textTransform: 'capitalize' }}>{getRarityDisplayName(item.rarity || 'common')}</span>
               </a>
             </div>
           </div>
@@ -146,35 +142,35 @@ const SlotTooltip: React.ForwardRefRenderFunction<
               <>
                 {item.metadata?.firstname !== undefined && (
                   <div className="tooltip-durability">
-                    <p>Fornavn:</p>
+                    <p>First Name:</p>
                     <a>{item.metadata?.firstname}</a>
                   </div>
                 )}
 
                 {item.metadata?.lastname !== undefined && (
                   <div className="tooltip-durability">
-                    <p>Efternavn:</p>
+                    <p>Last Name:</p>
                     <a>{item.metadata?.lastname}</a>
                   </div>
                 )}
 
                 {item.metadata?.citizenid !== undefined && (
                   <div className="tooltip-durability">
-                    <p>Border ID:</p>
+                    <p>State ID:</p>
                     <a>{item.metadata?.citizenid}</a>
                   </div>
                 )}
 
                 {item.metadata?.birthday !== undefined && (
                   <div className="tooltip-durability">
-                    <p>Fødselsdag:</p>
+                    <p>Birthday:</p>
                     <a>{item.metadata?.birthday}</a>
                   </div>
                 )}
 
                 {item.durability !== undefined && (
                   <div className="tooltip-durability">
-                    <p>Holdbarhed:</p>
+                    <p>Durability:</p>
                     <a>{item.durability}%</a>
                   </div>
                 )}
@@ -186,25 +182,25 @@ const SlotTooltip: React.ForwardRefRenderFunction<
                 )}
                 {item.metadata?.serial && (
                   <div className="tooltip-ammo">
-                    <p>Serienummer:</p>
+                    <p>Serial Number:</p>
                     <a>{item.metadata.serial}</a>
                   </div>
                 )}
                 {item.metadata?.evidencetype && (
                   <div className="tooltip-ammo">
-                    <p>Bevis type:</p>
+                    <p>Evidence Type:</p>
                     <a>{EVIDENCE_LABELS[item.metadata?.evidencetype as EvidenceKey]}</a>
                   </div>
                 )}
                 {item.metadata?.evidenceId && (
                   <div className="tooltip-ammo">
-                    <p>Bevisnummer:</p>
+                    <p>Evidence Number:</p>
                     <a>{item.metadata.evidenceId}</a>
                   </div>
                 )}
                 {item.metadata?.components && item.metadata?.components[0] && (
                   <div className="tooltip-ammo">
-                    <p>Komponenter:</p>
+                    <p>Components:</p>
                     <a>{(item.metadata?.components).map((component: string, index: number, array: []) =>
                       index + 1 === array.length ? Items[component]?.label : Items[component]?.label + ', '
                     )}</a>

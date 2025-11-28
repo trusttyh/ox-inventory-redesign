@@ -13,8 +13,9 @@ const root = document.getElementById('root');
 
 if (isEnvBrowser()) {
   // https://i.imgur.com/iPTAdYV.png - Night time img
-  // root!.style.backgroundImage = 'url("https://i.imgur.com/iPTAdYV.png")';
-  root!.style.backgroundColor = '#121212';
+  root!.style.backgroundImage = 'url("https://i.imgur.com/3pzRj9n.png")';
+  // root!.style.background = 'linear-gradient(to bottom right, #022c22, #134e4a, #164e63)'
+  // root!.style.backgroundColor = '#121212';
   root!.style.backgroundSize = 'cover';
   root!.style.backgroundRepeat = 'no-repeat';
   root!.style.backgroundPosition = 'center';

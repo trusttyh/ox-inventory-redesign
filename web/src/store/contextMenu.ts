@@ -7,23 +7,27 @@ interface ContextMenuState {
     y: number;
   } | null;
   item: SlotWithItem | null;
+  inventoryType: string | null;
 }
 
 const initialState: ContextMenuState = {
   coords: null,
   item: null,
+  inventoryType: null,
 };
 
 export const contextMenuSlice = createSlice({
   name: 'contextMenu',
   initialState,
   reducers: {
-    openContextMenu(state, action: PayloadAction<{ item: SlotWithItem; coords: { x: number; y: number } }>) {
+    openContextMenu(state, action: PayloadAction<{ item: SlotWithItem; coords: { x: number; y: number }; inventoryType: string }>) {
       state.coords = action.payload.coords;
       state.item = action.payload.item;
+      state.inventoryType = action.payload.inventoryType;
     },
     closeContextMenu(state) {
       state.coords = null;
+      state.inventoryType = null;
     },
   },
 });

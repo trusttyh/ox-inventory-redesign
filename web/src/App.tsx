@@ -11,125 +11,235 @@ import DragPreview from './components/utils/DragPreview';
 import { fetchNui } from './utils/fetchNui';
 import { useDragDropManager } from 'react-dnd';
 import KeyPress from './components/utils/KeyPress';
+import { setUtilitySlotRestrictions } from './utils/utilitySlotValidation';
 
-// --- Debug Data for local dev / npm run start ---
 debugData([
+  {
+    action: 'itemNotify',
+    data: [{ slot: 1, name: 'water', weight: 3000, count: 5, metadata: {} }, 'ui_added', 5],
+  },
+  {
+    action: 'itemNotify',
+    data: [{ slot: 2, name: 'water', weight: 0, count: 1, metadata: { durability: 75 } }, 'ui_removed', 1],
+  },
+  {
+    action: 'itemNotify',
+    data: [
+      { slot: 3, name: 'weapon_pistol', weight: 1000, count: 1, metadata: { durability: 100 } },
+      'ui_holstered',
+      1,
+    ],
+  },
+
+  {
+    action: 'toggleHotbar',
+    data: {},
+  },
+
   {
     action: 'setupInventory',
     data: {
       leftInventory: {
         id: 'test',
         type: 'player',
-        slots: 10,
-        label: 'Bob Smith',
+        slots: 8,
+        label: 'AutLaaw Dev',
         weight: 3000,
         maxWeight: 5000,
         items: [
           {
             slot: 1,
-            name: 'phone',
-            weight: 3000,
+            name: 'weapon_pistolxm3',
             rarity: 'common',
+            weight: 3000,
             metadata: {
-              description: `name: Svetozar Miletic  \n Gender: Male`,
-              ammo: 3,
-              mustard: '60%',
-              ketchup: '30%',
-              mayo: '10%',
+              description: `Name: Svetozar Miletic  \n Gender: Male`,
+              durability: 85,
             },
-            count: 5,
+            count: 1,
           },
           {
-            slot: 3,
-            name: 'Water',
-            weight: 100,
-            rarity: 'uncommon',
+            slot: 2,
+            name: 'weapon_advancedrifle',
+            weight: 0,
             count: 1,
-            metadata: { 
-              description: 'Generic item description',
-              serial: 'SN123456789',
-              ammo: 30,
-              type: '9mm',
-              label: 'Custom Water Label',
+            rarity: 'uncommon',
+            metadata: {
+              durability: 85,
             },
           },
+          { slot: 3, name: 'Rum', weight: 100, count: 12, rarity: 'rare', metadata: { type: 'Special', durability: 85 } },
           {
             slot: 4,
             name: 'water',
             weight: 100,
-            rarity: 'mythic',
-            count: 1,
-            metadata: { 
-              description: 'Generic item description',
-              serial: 'SN123456789',
-              ammo: 30,
-              type: '9mm',
-              label: 'Custom Water Label',
+            count: 5,
+            rarity: 'epic',
+            metadata: {
+              durability: 85,
             },
           },
-          { slot: 5, name: 'water', rarity: 'common', weight: 100, count: 1 },
           {
-            slot: 6,
-            name: 'backwoods',
+            slot: 5,
+            name: 'bandage',
             weight: 100,
             count: 1,
-            rarity: 'rare',
+            rarity: 'objective',
             metadata: {
-              label: 'Russian Cream',
-              imageurl: 'https://i.imgur.com/2xHhTTz.png',
+              durability: 85,
+            },
+          },
+          {
+            slot: 6,
+            name: 'military_backpack',
+            weight: 100,
+            count: 1,
+            rarity: 4,
+            metadata: {
+              durability: 85,
+            },
+          },
+          {
+            slot: 7,
+            name: 'Armor',
+            weight: 100,
+            count: 1,
+            rarity: 'mythic',
+            metadata: {
+              durability: 85,
+            },
+          },
+          {
+            slot: 8,
+            name: 'Phone',
+            weight: 100,
+            count: 1,
+            rarity: 'common',
+            metadata: {
+              durability: 85,
+            },
+          },
+          {
+            slot: 9,
+            name: 'parachute',
+            weight: 100,
+            count: 1,
+            rarity: 'epic',
+            metadata: {
+              durability: 85,
+            },
+          },
+          {
+            slot: 10,
+            name: 'cloth',
+            weight: 100,
+            count: 3,
+            rarity: 'common',
+            metadata: {
+              durability: 85,
+            },
+          },
+          {
+            slot: 11,
+            name: 'scrapmetal',
+            weight: 100,
+            count: 5,
+            rarity: 'common',
+            metadata: {
+              durability: 85,
             },
           },
         ],
       },
-      backpackInventory: {
-        id: 'backpack',
-        type: 'backpack',
-        slots: 8,
-        label: 'Backpack',
-        weight: 1000,
-        maxWeight: 2000,
-        items: [],
-      },
       rightInventory: {
-        id: 'crafting',
-        type: 'crafting',
-        slots: 5000,
-        label: 'Test',
-        weight: 3000,
-        maxWeight: 5000,
+        id: 'drop_123',
+        type: 'ground',
+        slots: 40,
+        label: 'Drop',
+        weight: 0,
+        maxWeight: 10000,
         items: [
           {
-            slot: 2,
-            name: 'burger',
+            slot: 1,
+            name: 'water',
             weight: 100,
-            rarity: 'common',
-            price: 1,
-            count: 1,
+            count: 10,
+          },
+          {
+            slot: 2,
+            name: 'lockpick',
+            weight: 500,
+            count: 3,
           },
           {
             slot: 3,
-            name: 'phone',
-            weight: 100,
-            rarity: 'common',
-            price: 1,
+            name: 'goldchain',
+            weight: 250,
             count: 1,
+            rarity: 'epic',
+          },
+        ],
+      },
+      backpackInventory: {
+        id: 'backpack_demo',
+        type: 'backpack',
+        slots: 8,
+        label: 'Backpack',
+        weight: 800,
+        maxWeight: 4000,
+        items: [],
+      },
+      craftingInventory: {
+        id: 'crafting_1738',
+        type: 'crafting_storage',
+        slots: 50,
+        label: 'Crafting Storage',
+        weight: 1200,
+        maxWeight: 5000,
+        items: [
+          { slot: 1, name: 'sign_rightturn', count: 5, weight: 200 },
+          { slot: 2, name: 'sign_stop', count: 5, weight: 200 },
+          { slot: 3, name: 'sign_uturn', count: 5, weight: 200 },
+          { slot: 4, name: 'sign_walkingman', count: 5, weight: 200 },
+          { slot: 5, name: 'sign_yield', count: 5, weight: 200 },
+        ],
+      },
+    },
+  },
+  {
+    action: 'setupInventory',
+    data: {
+      rightInventory: {
+        id: '1738',
+        type: 'crafting',
+        slots: 8,
+        label: 'Hidden Cache',
+        weight: 1200,
+        maxWeight: 5000,
+        items: [
+          {
+            name: 'ironbar',
+            ingredients: {
+              sign_dontblock: 5,
+              sign_leftturn: 5,
+              sign_nopark: 5,
+              sign_notresspass: 5,
+            },
+            duration: 5000,
+            count: 50,
           },
           {
-            slot: 1,
-            name: 'phone',
-            weight: 100,
-            rarity: 'common',
-            price: 1,
-            count: 1,
-          },
-          {
-            slot: 4,
-            name: 'phone',
-            weight: 100,
-            rarity: 'common',
-            price: 1,
-            count: 1,
-          },
+            name: 'scrapmetal',
+            ingredients: {
+              sign_rightturn: 5,
+              sign_stop: 5,
+              sign_uturn: 5,
+              sign_walkingman: 5,
+              sign_yield: 5,
+            },
+            duration: 5000,
+            count: 75,
+          }
         ],
       },
     },
@@ -140,7 +250,6 @@ const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const manager = useDragDropManager();
 
-  // Nui init event (real server data)
   useNuiEvent<{
     locale: { [key: string]: string };
     items: typeof Items;
@@ -152,21 +261,30 @@ const App: React.FC = () => {
 
     setImagePath(imagepath);
     dispatch(setupInventory({ leftInventory }));
-  });
 
-  // Setup inventories (for debugData / dev mode)
-  useNuiEvent<{
-    leftInventory: Inventory;
-    backpackInventory: Inventory;
-    rightInventory: Inventory;
-  }>('setupInventory', ({ leftInventory, backpackInventory, rightInventory }) => {
-    dispatch(setupInventory({ leftInventory, backpackInventory, rightInventory }));
-  });
+    fetchNui('uiLoaded', {}).catch((error) => {
+      console.warn('Failed to call uiLoaded:', error);
+    });
 
-  fetchNui('uiLoaded', {});
+    fetchNui('fetchSlotRestrictions', {})
+      .then((restrictions: any) => {
+        if (restrictions && typeof restrictions === 'object') {
+          setUtilitySlotRestrictions(restrictions);
+        }
+      })
+      .catch((error) => {
+        console.warn('Failed to fetch slot restrictions:', error);
+      });
+  });
 
   useNuiEvent('closeInventory', () => {
     manager.dispatch({ type: 'dnd-core/END_DRAG' });
+  });
+
+  useNuiEvent<{
+    backpackInventory: Inventory;
+  }>('refreshBackpackInventory', ({ backpackInventory }) => {
+    dispatch(setupInventory({ backpackInventory }));
   });
 
   return (

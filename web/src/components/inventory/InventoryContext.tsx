@@ -1,14 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Menu, MenuItem } from '../utils/menu/Menu';
-import { useAppSelector, useAppDispatch } from '../../store';
-import { selectItemAmount, setItemAmount } from '../../store/inventory';
+import { useAppSelector } from '../../store';
 import { onUse } from '../../dnd/onUse';
 import { onGive } from '../../dnd/onGive';
-import { onDrop } from '../../dnd/onDrop';
 import { Items } from '../../store/items';
 import { fetchNui } from '../../utils/fetchNui';
 import { Locale } from '../../store/locale';
-import { isSlotWithItem } from '../../helpers';
 import { setClipboard } from '../../utils/setClipboard';
 
 interface DataProps {
@@ -20,7 +17,7 @@ interface DataProps {
 }
 
 interface InventoryContextProps {
-  setSplitItem: React.Dispatch<React.SetStateAction<{ item: any; amount: number } | null>>;
+  setSplitItem: React.Dispatch<React.SetStateAction<{ item: any; amount: number; inventoryType?: string | null } | null>>;
 }
 
 interface Button {
@@ -41,10 +38,20 @@ interface ButtonWithIndex extends Button {
 interface GroupedButtons extends Array<Group> { }
 
 const InventoryContext: React.FC<InventoryContextProps> = ({ setSplitItem }) => {
-  const itemAmount = useAppSelector(selectItemAmount);
-  const dispatch = useAppDispatch();
   const contextMenu = useAppSelector((state) => state.contextMenu);
   const item = contextMenu.item;
+  const isPhone = item?.name?.toLowerCase() === 'phone';
+
+  const isWeaponInValidSlot = useMemo((): boolean => {
+    if (!item) return false;
+
+    const name = item.name?.toUpperCase() || '';
+    const isWeapon = name.startsWith('WEAPON_');
+
+    const isInPlayerUtilitySlot = contextMenu.inventoryType === 'player' && [1, 2].includes(item.slot);
+
+    return !isWeapon || isInPlayerUtilitySlot;
+  }, [item, contextMenu.inventoryType]);
 
   const handleClick = (data: DataProps) => {
     if (!item) return;
@@ -56,11 +63,8 @@ const InventoryContext: React.FC<InventoryContextProps> = ({ setSplitItem }) => 
       case 'give':
         onGive({ name: item.name, slot: item.slot });
         break;
-      case 'drop':
-        isSlotWithItem(item) && onDrop({ item, inventory: 'player' });
-        break;
       case 'split':
-        setSplitItem({ item, amount: itemAmount });
+        setSplitItem({ item, amount: item.count ?? 1, inventoryType: contextMenu.inventoryType });
         break;
       case 'remove':
         fetchNui('removeComponent', { component: data.component, slot: data.slot });
@@ -99,16 +103,12 @@ const InventoryContext: React.FC<InventoryContextProps> = ({ setSplitItem }) => 
     }, []);
   };
 
-  const inputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.target.valueAsNumber =
-      isNaN(event.target.valueAsNumber) || event.target.valueAsNumber < 0 ? 0 : Math.floor(event.target.valueAsNumber);
-    dispatch(setItemAmount(event.target.valueAsNumber));
-  };
-
   return (
     <Menu>
-      <MenuItem onClick={() => handleClick({ action: 'use' })} label={Locale.ui_use || 'Brug'} />
-      <MenuItem onClick={() => handleClick({ action: 'give' })} label={Locale.ui_give || 'Giv'} />
+      {isWeaponInValidSlot && !isPhone && (
+        <MenuItem onClick={() => handleClick({ action: 'use' })} label={Locale.ui_use || 'Use'} />
+      )}
+      <MenuItem onClick={() => handleClick({ action: 'give' })} label={Locale.ui_give || 'Give'} />
 
       {item && item.count > 1 && (
         <MenuItem onClick={() => handleClick({ action: 'split' })} label={Locale.ui_split || 'Split'} />
@@ -161,9 +161,6 @@ const InventoryContext: React.FC<InventoryContextProps> = ({ setSplitItem }) => 
           ))}
         </>
       )}
-
-
-      <MenuItem onClick={() => handleClick({ action: 'drop' })} label={Locale.ui_drop || 'Smid'} />
     </Menu>
   );
 };

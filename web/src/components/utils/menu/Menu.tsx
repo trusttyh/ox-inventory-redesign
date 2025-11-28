@@ -7,7 +7,6 @@ import {
   FloatingFocusManager,
   FloatingList,
   FloatingNode,
-  FloatingOverlay,
   FloatingPortal,
   FloatingTree,
   offset,
@@ -212,18 +211,16 @@ export const MenuComponent = React.forwardRef<HTMLButtonElement, MenuProps & Rea
           <FloatingList elementsRef={elementsRef} labelsRef={labelsRef}>
             {isMounted && (
               <FloatingPortal>
-                <FloatingOverlay lockScroll>
-                  <FloatingFocusManager context={context} modal={true} initialFocus={refs.floating}>
-                    <div
-                      ref={refs.setFloating}
-                      className="context-menu-list"
-                      style={{ ...floatingStyles, ...styles }}
-                      {...getFloatingProps()}
-                    >
-                      {children}
-                    </div>
-                  </FloatingFocusManager>
-                </FloatingOverlay>
+                <FloatingFocusManager context={context} modal={false} initialFocus={refs.floating}>
+                  <div
+                    ref={refs.setFloating}
+                    className="context-menu-list"
+                    style={{ ...floatingStyles, ...styles, zIndex: 10001 }}
+                    {...getFloatingProps()}
+                  >
+                    {children}
+                  </div>
+                </FloatingFocusManager>
               </FloatingPortal>
             )}
           </FloatingList>

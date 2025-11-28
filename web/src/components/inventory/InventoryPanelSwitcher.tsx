@@ -8,10 +8,12 @@ interface Props {
 const InventoryPanelSwitcher: React.FC<Props> = ({ activePanel, setActivePanel }) => {
     // keyboard shortcuts (Q/E)
     const handleKeyDown = useCallback((e: KeyboardEvent) => {
-        if (e.key.toLowerCase() === 'q') {
+        const { key } = e;
+
+        if (key === 'q' || key === 'Q') {
             setActivePanel('inventory');
         }
-        if (e.key.toLowerCase() === 'e') {
+        if (key === 'e' || key === 'E') {
             setActivePanel('utils');
         }
     }, [setActivePanel]);
@@ -26,8 +28,8 @@ const InventoryPanelSwitcher: React.FC<Props> = ({ activePanel, setActivePanel }
             className="inventory-utils"
             style={{
                 position: 'absolute',
-                right: 0,
-                top: '5vh',
+                left: '85vw',
+                top: '2vh',
                 paddingRight: '12rem',
                 display: 'flex',
                 alignItems: 'center',
@@ -38,7 +40,7 @@ const InventoryPanelSwitcher: React.FC<Props> = ({ activePanel, setActivePanel }
                 className={`inventory-switch ${activePanel === 'inventory' ? 'active' : ''}`}
                 onClick={() => setActivePanel('inventory')}
             >
-                <a className="inventory-switch-btn">Q</a> INVENTORY
+                <a className="inventory-switch-btn">Q</a> INVENTORIES
             </button>
             <button
                 className={`inventory-switch ${activePanel === 'utils' ? 'active' : ''}`}

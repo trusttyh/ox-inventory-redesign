@@ -20,7 +20,25 @@ const COLORS = {
   accentColor: [255, 172, 28], // Orange (Oragne)
 };
 
-const WeightBar: React.FC<{ percent: number; durability?: boolean }> = ({ percent, durability }) => {
+const WeightBar: React.FC<{ percent: number; durability?: boolean, rarityColor?: string }> = ({ percent, durability, rarityColor }) => {
+
+  if (rarityColor) {
+    return (
+      <div className={durability ? 'durability-bar' : 'weight-bar'}>
+        <div
+          style={{
+            visibility: percent > 0 ? 'visible' : 'hidden',
+            height: '100%',
+            width: `${percent}%`,
+            borderRadius: '10rem',
+            backgroundColor: rarityColor,
+            transition: `background ${0.3}s ease, width ${0.3}s ease`,
+          }}
+        ></div>
+      </div>
+    );
+  }
+
   const color = useMemo(
     () =>
       durability

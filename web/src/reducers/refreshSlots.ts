@@ -27,6 +27,10 @@ export const refreshSlotsReducer: CaseReducer<State, PayloadAction<Payload>> = (
             targetInventory = state.leftInventory;
           } else if (data.inventory === InventoryType.BACKPACK) {
             targetInventory = state.backpackInventory;
+          } else if (data.inventory === InventoryType.CONTAINER && state.containerInventory) {
+            targetInventory = state.containerInventory;
+          } else if (data.inventory === InventoryType.CRAFTING_STORAGE && state.craftingInventory) {
+            targetInventory = state.craftingInventory;
           } else {
             targetInventory = state.rightInventory;
           }
@@ -58,7 +62,6 @@ export const refreshSlotsReducer: CaseReducer<State, PayloadAction<Payload>> = (
     }
   }
 
-  // Refresh maxWeight when SetMaxWeight is ran while an inventory is open
   if (action.payload.weightData) {
     const inventoryId = action.payload.weightData.inventoryId;
     const inventoryMaxWeight = action.payload.weightData.maxWeight;
@@ -66,14 +69,16 @@ export const refreshSlotsReducer: CaseReducer<State, PayloadAction<Payload>> = (
       inventoryId === state.leftInventory.id
         ? 'leftInventory'
         : inventoryId === state.rightInventory.id
-        ? 'rightInventory'
-        : inventoryId === state.backpackInventory.id
-        ? 'backpackInventory'
-        : null;
+          ? 'rightInventory'
+          : inventoryId === state.backpackInventory.id
+            ? 'backpackInventory'
+            : state.craftingInventory && inventoryId === state.craftingInventory.id
+              ? 'craftingInventory'
+              : null;
 
     if (!inv) return;
 
-    state[inv].maxWeight = inventoryMaxWeight;
+    state[inv]!.maxWeight = inventoryMaxWeight;
   }
 
   if (action.payload.slotsData) {
@@ -84,20 +89,23 @@ export const refreshSlotsReducer: CaseReducer<State, PayloadAction<Payload>> = (
       inventoryId === state.leftInventory.id
         ? 'leftInventory'
         : inventoryId === state.rightInventory.id
-        ? 'rightInventory'
-        : inventoryId === state.backpackInventory.id
-        ? 'backpackInventory'
-        : null;
+          ? 'rightInventory'
+          : inventoryId === state.backpackInventory.id
+            ? 'backpackInventory'
+            : state.craftingInventory && inventoryId === state.craftingInventory.id
+              ? 'craftingInventory'
+              : null;
 
     if (!inv) return;
 
-    state[inv].slots = slots;
+    state[inv]!.slots = slots;
     inventorySlice.caseReducers.setupInventory(state, {
       type: 'setupInventory',
       payload: {
         leftInventory: inv === 'leftInventory' ? state[inv] : undefined,
         rightInventory: inv === 'rightInventory' ? state[inv] : undefined,
         backpackInventory: inv === 'backpackInventory' ? state[inv] : undefined,
+        craftingInventory: inv === 'craftingInventory' ? state[inv] : undefined,
       },
     });
   }

@@ -11,16 +11,17 @@ import { closeTooltip } from '../../store/tooltip';
 import InventoryContext from './InventoryContext';
 import { closeContextMenu } from '../../store/contextMenu';
 import Fade from '../utils/transitions/Fade';
-import UsefulControls from './UsefulControls';
 import InventoryHotbar from './InventoryHotbar';
 import InventoryPanelSwitcher from './InventoryPanelSwitcher';
 import InventoryUtils from './InventoryUtils';
 import SplitControl from './SplitControl';
+import InventoryContainer from './InventoryContainer';
+import { AnimatePresence } from 'framer-motion';
 
 const Inventory: React.FC = () => {
   const [inventoryVisible, setInventoryVisible] = useState(false);
   const [infoVisible, setInfoVisible] = useState(false);
-  const [splitItem, setSplitItem] = useState<{ item: any; amount: number } | null>(null);
+  const [splitItem, setSplitItem] = useState<{ item: any; amount: number; inventoryType?: string | null } | null>(null);
   const [activePanel, setActivePanel] = useState<'utils' | 'inventory'>('inventory');
   const dispatch = useAppDispatch();
 
@@ -35,7 +36,12 @@ const Inventory: React.FC = () => {
   useNuiEvent<{ leftInventory?: InventoryProps; rightInventory?: InventoryProps }>(
     'setupInventory',
     (data) => {
-      dispatch(setupInventory(data));
+      dispatch(
+        setupInventory({
+          ...data,
+          shouldReset: !!data.leftInventory && data.rightInventory?.type !== 'container',
+        })
+      );
       !inventoryVisible && setInventoryVisible(true);
     }
   );
@@ -51,31 +57,33 @@ const Inventory: React.FC = () => {
     <>
       <Fade in={inventoryVisible}>
         <div className="inventory-wrapper">
-          {/* <InventoryPanelSwitcher activePanel={activePanel} setActivePanel={setActivePanel} /> */}
+          <InventoryPanelSwitcher activePanel={activePanel} setActivePanel={setActivePanel} />
 
           <LeftInventory />
 
-          {splitItem && (
-  <SplitControl
-    item={splitItem.item}
-    amount={splitItem.amount}
-    infoVisible={infoVisible}
-    setInfoVisible={setInfoVisible}
-  />
-)}
+          <AnimatePresence>
+            {splitItem && (
+              <SplitControl
+                item={splitItem.item}
+                amount={splitItem.amount}
+                inventoryType={splitItem.inventoryType}
+                infoVisible={infoVisible}
+                setInfoVisible={setInfoVisible}
+                onCancel={() => setSplitItem(null)}
+              />
+            )}
+          </AnimatePresence>
 
-          {/* {activePanel === 'utils' && <InventoryUtils />} */}
-          {activePanel === 'inventory' && <RightInventory />}
+          {activePanel === 'utils' && <InventoryUtils />}
+          {activePanel === 'inventory' && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1vh', alignItems: 'center' }}>
+              <RightInventory />
+              <InventoryContainer />
+            </div>
+          )}
 
           <Tooltip />
           <InventoryContext setSplitItem={setSplitItem} />
-          <UsefulControls infoVisible={infoVisible} setInfoVisible={setInfoVisible} />
-
-          <button className="useful-controls-button" onClick={() => setInfoVisible(true)}>
-            <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 524 524">
-              <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
-            </svg>
-          </button>
         </div>
       </Fade>
       <InventoryHotbar />

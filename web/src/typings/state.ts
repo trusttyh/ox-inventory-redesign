@@ -5,6 +5,8 @@ export type State = {
   leftInventory: Inventory;
   rightInventory: Inventory;
   backpackInventory: Inventory;
+  containerInventory?: Inventory;
+  craftingInventory?: Inventory;
   itemAmount: number;
   shiftPressed: boolean;
   isBusy: boolean;
@@ -13,5 +15,7 @@ export type State = {
     leftInventory: Inventory;
     rightInventory: Inventory;
     backpackInventory: Inventory;
+    containerInventory?: Inventory;
+    craftingInventory?: Inventory;
   };
 };
