@@ -82,8 +82,8 @@ end
 local function hasShopAccess(shop)
     local hasGroupAccess = not shop.groups or client.hasGroup(shop.groups)
     local hasWorkplaceAccess = not shop.workplace or client.hasWorkplace(shop.workplace)
-    local hasDutyAccess = not shop.reqDuty or client.isOnDuty(shop.groups)
-    return hasGroupAccess and hasWorkplaceAccess and hasDutyAccess
+    -- local hasDutyAccess = not shop.reqDuty or client.isOnDuty(shop.groups) -- This is made for Sandbox Framework. Uncomment if you use Sandbox Framework.
+    return hasGroupAccess and hasWorkplaceAccess  -- and hasDutyAccess
 end
 
 local function getShopName(shop, target)
