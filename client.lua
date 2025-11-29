@@ -124,7 +124,7 @@ RegisterNUICallback('getSettings', function(data, cb)
 end)
 
 RegisterNUICallback('getPhoneKey', function(data, cb)
-    local phoneKey = exports["sandbox-kbs"]:GetKey("phone_toggle")
+    local phoneKey = "M"
     cb(phoneKey or "M")
 end)
 
@@ -250,11 +250,11 @@ function client.openInventory(inv, data)
     end
 
     if inv == 'dumpster' and cache.vehicle then
-        return exports['sandbox-hud']:Notification("error", locale('inventory_right_access'))
+        return lib.notify({ id = 'inventory_right_access', type = 'error', description = locale('inventory_right_access') })
     end
 
     if not canOpenInventory() then
-        return exports['sandbox-hud']:Notification("error", locale('inventory_player_access'))
+        return lib.notify({ id = 'inventory_player_access', type = 'error', description = locale('inventory_player_access') })
     end
 
     local left, right, accessError
@@ -277,19 +277,19 @@ function client.openInventory(inv, data)
         local targetCoords = targetPed and GetEntityCoords(targetPed)
 
         if not targetCoords or #(targetCoords - GetEntityCoords(playerPed)) > 1.8 or (not client.hasGroup(shared.police) and not Player(serverId).state.canSteal) then
-            return exports['sandbox-hud']:Notification("error", locale('inventory_right_access'))
+            return lib.notify({ id = 'inventory_right_access', type = 'error', description = locale('inventory_right_access') })
         end
     end
 
     if inv == 'shop' and invOpen == false then
         if cache.vehicle then
-            return exports['sandbox-hud']:Notification("error", locale('cannot_perform'))
+            return lib.notify({ id = 'cannot_perform', type = 'error', description = locale('cannot_perform') })
         end
 
         left, right, accessError = lib.callback.await('ox_inventory:openShop', 200, data)
     elseif inv == 'crafting' then
         if cache.vehicle then
-            return exports['sandbox-hud']:Notification("error", locale('cannot_perform'))
+            return lib.notify({ id = 'cannot_perform', type = 'error', description = locale('cannot_perform') })
         end
 
         left, right, accessError = lib.callback.await('ox_inventory:openCraftingBench', 200, data.id, data.index)
@@ -344,7 +344,7 @@ function client.openInventory(inv, data)
     end
 
     if accessError then
-        return exports['sandbox-hud']:Notification("error", locale(accessError))
+        return lib.notify({ id = accessError, type = 'error', description = locale(accessError) })
     end
 
     -- Stash does not exist
@@ -352,7 +352,7 @@ function client.openInventory(inv, data)
         if left == false then return false end
 
         if invOpen == false then
-            return exports['sandbox-hud']:Notification("error", locale('inventory_right_access'))
+            return lib.notify({ id = 'inventory_right_access', type = 'error', description = locale('inventory_right_access') })
         end
 
         if invOpen then return client.closeInventory() end
@@ -491,7 +491,7 @@ lib.callback.register('ox_inventory:usingItem', function(data, noAnim)
             local success = not PlayerData.dead
             if success then
                 if item.notification then
-                    exports['sandbox-hud']:Notification("info", item.notification)
+                    lib.notify({ description = item.notification })
                 end
                 if item.status and client.setPlayerStatus then
                     client.setPlayerStatus(item.status)
@@ -564,7 +564,7 @@ lib.callback.register('ox_inventory:usingItem', function(data, noAnim)
 
         if success then
             if item.notification then
-                exports['sandbox-hud']:Notification("info", item.notification)
+                lib.notify({ description = item.notification })
             end
             if item.status and client.setPlayerStatus then
                 client.setPlayerStatus(item.status)
@@ -595,7 +595,7 @@ local function useItem(data, cb, noAnim, skipUsedNotification)
 
     if not slotData or not canUseItem(data.ammo and true) then
         if currentWeapon then
-            return exports['sandbox-hud']:Notification("error", locale('cannot_perform'))
+            return lib.notify({ id = 'cannot_perform', type = 'error', description = locale('cannot_perform') })
         end
 
         return
@@ -666,7 +666,7 @@ local function useSlot(slot, noAnim)
 
     if canUseItem(data.ammo and true) then
         if data.component and not currentWeapon then
-            return exports['sandbox-hud']:Notification("error", locale('weapon_hand_required'))
+            return lib.notify({ id = 'weapon_hand_required', type = 'error', description = locale('weapon_hand_required') })
         end
 
         local durability = item.metadata.durability --[[@as number?]]
@@ -675,9 +675,9 @@ local function useSlot(slot, noAnim)
 
         if durability and durability <= 100 and consume then
             if durability <= 0 then
-                return exports['sandbox-hud']:Notification("error", locale('no_durability', label))
+                return lib.notify({ type = 'error', description = locale('no_durability', label) })
             elseif consume ~= 0 and consume < 1 and durability < consume * 100 then
-                return exports['sandbox-hud']:Notification("error", locale('not_enough_durability', label))
+                eturn lib.notify({ type = 'error', description = locale('not_enough_durability', label) })
             end
         end
 
@@ -717,7 +717,7 @@ local function useSlot(slot, noAnim)
 
             if data.hash ~= GetSelectedPedWeapon(playerPed) then
                 lib.print.info(('failed to equip %s (cause unknown)'):format(item.name))
-                return exports['sandbox-hud']:Notification("error", locale('cannot_use', data.label))
+                return lib.notify({ type = 'error', description = locale('cannot_use', data.label) })
             end
 
             RemoveWeaponFromPed(cache.ped, data.hash)
@@ -840,8 +840,7 @@ local function useSlot(slot, noAnim)
 
                 for componentIndex = 1, #weaponComponents do
                     if componentType == Items[weaponComponents[componentIndex]].type then
-                        return exports['sandbox-hud']:Notification("error",
-                            locale('component_slot_occu', componentType))
+                        return lib.notify({ id = 'component_slot_occupied', ype = 'error', escription = locale('component_slot_occupied', componentType) })
                     end
                 end
 
@@ -850,7 +849,7 @@ local function useSlot(slot, noAnim)
 
                     if DoesWeaponTakeWeaponComponent(currentWeapon.hash, component) then
                         if HasPedGotWeaponComponent(playerPed, currentWeapon.hash, component) then
-                            exports['sandbox-hud']:Notification("error", locale('component_has', label))
+							lib.notify({ id = 'component_has', type = 'error', escription = locale('component_has', label) })
                         else
                             useItem(data, function(data)
                                 if data then
@@ -867,11 +866,11 @@ local function useSlot(slot, noAnim)
                         return
                     end
                 end
-                exports['sandbox-hud']:Notification("error", locale('component_invalid', label))
+                lib.notify({ id = 'component_invalid', type = 'error', description = locale('component_invalid', label) })
             elseif data.allowArmed then
                 useItem(data)
             else
-                return exports['sandbox-hud']:Notification("error", locale('cannot_perform'))
+                return lib.notify({ id = 'cannot_perform', type = 'error', description = locale('cannot_perform') })
             end
         elseif not data.ammo and not data.component then
             useItem(data)
@@ -992,7 +991,7 @@ local function registerCommands()
             end
 
             if invBusy or not canOpenInventory() then
-                exports['sandbox-hud']:Notification("error", locale('inventory_player_access'))
+                lib.notify({ id = 'inventory_player_access', type = 'error', description = locale('inventory_player_access') })
             end
 
             if StashTarget then
@@ -1037,7 +1036,8 @@ local function registerCommands()
                         useSlot(slotId)
                     end
                 else
-                    exports['sandbox-hud']:Notification("error", locale('no_durability', currentWeapon.label))
+                    lib.notify({ id = 'no_durability', type = 'error', description = locale('no_durability', currentWeapon.label) })
+                    
                 end
             end
         end
@@ -1234,7 +1234,8 @@ RegisterNetEvent('ox_inventory:inventoryReturned', function(data)
     if source == '' then return end
     if currentWeapon then currentWeapon = Weapon.Disarm(currentWeapon) end
 
-    exports['sandbox-hud']:Notification("info", locale('items_returned'))
+    lib.notify({ id = 'items_returned', type = 'info', description = locale('items_returned') })
+    
     client.closeInventory()
 
     local num, items = 0, {}
@@ -1249,7 +1250,7 @@ end)
 
 RegisterNetEvent('ox_inventory:inventoryConfiscated', function(message)
     if source == '' then return end
-    if message then exports['sandbox-hud']:Notification("error", locale('items_confiscated')) end
+    if message then lib.notify({ id = 'items_confiscated', type = 'error', description = locale('items_confiscated') }) end
 
     if currentWeapon then currentWeapon = Weapon.Disarm(currentWeapon) end
 
@@ -1545,8 +1546,7 @@ RegisterNetEvent('ox_inventory:setPlayerInventory', function(currentDrops, inven
             if IsControlJustReleased(0, 38) then
                 lib.callback('ox_inventory:buyLicense', 1000, function(success, message)
                     if success ~= nil then
-                        exports['sandbox-hud']:Notification(success == false and "error" or "success",
-                            locale(message, locale('license', point.type:gsub("%l", string.upper))))
+                        lib.notify({ id = message, type = success == false and "error" or "success", description = locale(message, locale('license', point.type:gsub("%l", string.upper))) })
                     end
                 end, point.invId)
             end
@@ -1593,7 +1593,8 @@ RegisterNetEvent('ox_inventory:setPlayerInventory', function(currentDrops, inven
     PlayerData.loaded = true
 
     if not client.disablesetupnotification then
-        exports['sandbox-hud']:Notification("info", locale('inventory_setup'))
+        lib.notify({ id = 'inventory_setup', type = 'info', description = locale('inventory_setup') })
+        
     end
 
     Shops.refreshShops()
@@ -1634,13 +1635,14 @@ RegisterNetEvent('ox_inventory:setPlayerInventory', function(currentDrops, inven
 
                         if not id or #(playerCoords - pedCoords) > maxDistance or (not client.hasGroup(shared.police) and not Player(currentInventory.id).state.canSteal) then
                             client.closeInventory()
-                            exports['sandbox-hud']:Notification("error", locale('inventory_lost_access'))
+                            lib.notify({ id = 'inventory_lost_access', type = 'error', description = locale('inventory_lost_access') })
                         else
                             TaskTurnPedToFaceCoord(playerPed, pedCoords.x, pedCoords.y, pedCoords.z, 50)
                         end
                     elseif currentInventory.coords and (#(playerCoords - currentInventory.coords) > maxDistance or canSteal) then
                         client.closeInventory()
-                        exports['sandbox-hud']:Notification("error", locale('inventory_lost_access'))
+                        lib.notify({ id = 'inventory_lost_access', type = 'error', description = locale('inventory_lost_access') })
+
                     end
                 end
             end
@@ -1880,7 +1882,7 @@ RegisterNUICallback('removeComponent', function(data, cb)
     end
 
     if data.slot ~= currentWeapon.slot then
-        return exports['sandbox-hud']:Notification("error", locale('weapon_hand_wrong'))
+        return lib.notify({ id = 'weapon_hand_wrong', type = 'error', description = locale('weapon_hand_wrong') })
     end
 
     local itemSlot = PlayerData.inventory[currentWeapon.slot]
@@ -1936,7 +1938,7 @@ local function giveItemToTarget(serverId, slotId, count)
     local notification = lib.callback.await('ox_inventory:giveItem', false, slotId, serverId, count or 0)
 
     if notification then
-        exports['sandbox-hud']:Notification("error", locale(table.unpack(notification)))
+        lib.notify({ type = 'error', description = locale(table.unpack(notification)) })
     end
 end
 
@@ -2114,7 +2116,7 @@ RegisterNUICallback('swapItems', function(data, cb)
         if type(response) == 'table' then
             SendNUIMessage({ action = 'refreshSlots', data = { items = response } })
         else
-            exports['sandbox-hud']:Notification("error", locale(response))
+            lib.notify({ type = 'error', description = locale(response) })
         end
     end
 end)
@@ -2127,7 +2129,7 @@ RegisterNUICallback('buyItems', function(data, cb)
 	end
 
 	if message then
-        exports['sandbox-hud']:Notification(message.type, message.description)
+        lib.notify(message)
 	end
 
 	cb(response)
@@ -2143,7 +2145,7 @@ RegisterNUICallback('craftItem', function(data, cb)
             .toSlot)
 
         if not success then
-            if response then exports['sandbox-hud']:Notification("error", locale(response or 'cannot_perform')) end
+            if response then lib.notify({ type = 'error', description = locale(response or 'cannot_perform') }) end
             break
         end
     end
@@ -2164,7 +2166,8 @@ RegisterNUICallback('craftFromCraftingInventory', function(data, cb)
         cb({ success = true, data = responseData })
     else
         if errorMsg then 
-            exports['sandbox-hud']:Notification("error", locale(errorMsg or 'cannot_perform')) 
+            lib.notify({ type = 'error', description = locale(errorMsg or 'cannot_perform') }) 
+            
         end
         cb({ success = false, error = errorMsg })
     end
