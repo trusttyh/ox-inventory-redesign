@@ -67,9 +67,8 @@ const InventoryControl: React.FC = () => {
         </div>
       </div>
 
-      {/* ✅ Actually render SplitControl */}
       <SplitControl
-        item={{ name: 'example-item' }} // replace with real item from props/store
+        item={{ slot: 1, name: 'example-item', count: 1, weight: 0, label: 'Example Item' }}
         amount={itemAmount}
         infoVisible={infoVisible}
         setInfoVisible={setInfoVisible}
