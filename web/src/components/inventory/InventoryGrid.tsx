@@ -83,13 +83,14 @@ const InventoryGrid: React.FC<InventoryGridProps> = ({
     if (inventory.type === InventoryType.PLAYER) return 'Pockets';
     if (inventory.type === InventoryType.SHOP) return 'Shop';
     if (inventory.type === InventoryType.CRAFTING) return 'Crafting';
-    if (inventory.type === InventoryType.CONTAINER) return 'Storage';
     if (inventory.type === InventoryType.CRAFTING_STORAGE) return 'Crafting Storage';
+    if (inventory.type === InventoryType.BACKPACK) return inventory.label || 'Backpack';
+    if (inventory.type === InventoryType.CONTAINER) return 'Storage';
 
     if (inventory.type === 'drop') return 'Ground';
     if (inventory.type === 'trunk') return 'Trunk';
     if (inventory.type === 'glovebox') return 'Glovebox';
-    return inventory.label;
+    return 'Ground';
   }, [inventory.label, inventory.type]);
 
   const gridContent = (
