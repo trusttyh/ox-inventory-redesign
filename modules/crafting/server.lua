@@ -43,7 +43,7 @@ local function createCraftingBench(id, data)
         end
 
         -- Register crafting bench inventory if configured
-        if data.inventory then
+        -- if data.inventory then -- no need to check, always creates with defaults
             local invName = ('crafting:%s'):format(id)
             CraftingInventories[id] = {
                 name = invName,
@@ -51,11 +51,20 @@ local function createCraftingBench(id, data)
                 slots = data.inventory.slots or 50,
                 maxWeight = data.inventory.maxWeight or 25000,
             }
-        end
+        -- end
 
         CraftingBenches[id] = data
     end
 end
+
+exports('RegisterCraftStation', function(id, data)
+	createCraftingBench(id, data)
+	TriggerClientEvent('ox_inventory:registerCraftingBench', -1, id, data)
+end)
+
+lib.callback.register('ox_inventory:getCraftingBenches', function(source)
+    return CraftingBenches
+end)
 
 for id, data in pairs(lib.load('data.crafting') or {}) do createCraftingBench(data.name or id, data) end
 
@@ -108,7 +117,7 @@ lib.callback.register('ox_inventory:openCraftingBench', function(source, id, ind
         -- Load or create crafting bench inventory
         local craftingInventory = nil
         local craftingInvData = CraftingInventories[id]
-        
+
         if craftingInvData then
             local invName = craftingInvData.name
             craftingInventory = Inventory(invName)

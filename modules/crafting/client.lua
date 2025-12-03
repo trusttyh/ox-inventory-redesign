@@ -237,6 +237,11 @@ AddEventHandler('onResourceStop', function(resourceName)
     end
 end)
 
-for id, data in pairs(lib.load('data.crafting') or {}) do createCraftingBench(data.name or id, data) end
+RegisterNetEvent('ox_inventory:registerCraftingBench', function(id, data)
+    createCraftingBench(id, data)
+end)
+
+-- for id, data in pairs(lib.load('data.crafting') or {}) do createCraftingBench(data.name or id, data) end
+lib.callback('ox_inventory:getCraftingBenches', false, function(data) for id, data in pairs(data) do createCraftingBench(id, data) end end)
 
 return CraftingBenches
