@@ -109,14 +109,23 @@ export const setupInventoryReducer: CaseReducer<
   }
 
   if (rightInventory) {
-    // For crafting benches, preserve raw items (recipes) instead of processing as slots
     const processedInventory = rightInventory.type === 'crafting' ? {
       ...rightInventory,
-      // Keep items array as-is for crafting recipes - will be transformed in component
       items: rightInventory.items || [],
     } : {
       ...rightInventory,
-      items: Array.from(Array(rightInventory.slots), (_, index) => {
+      items: Array.from(Array(
+        rightInventory.type === 'shop' 
+          ? (() => {
+              const itemsArray = rightInventory.items ? Object.values(rightInventory.items) : [];
+              const maxSlot = itemsArray.reduce((max, item) => 
+                item?.slot && item?.name ? Math.max(max, item.slot) : max, 
+                0
+              );
+              return Math.max(maxSlot, rightInventory.slots);
+            })()
+          : rightInventory.slots
+      ), (_, index) => {
         const itemsArray = rightInventory.items ? Object.values(rightInventory.items) : [];
         const rawItem = itemsArray.find((i) => i?.slot === index + 1) || {
           slot: index + 1,
