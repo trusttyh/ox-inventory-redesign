@@ -83,7 +83,14 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
         if (!canDrag()) return null;
         return {
           inventory: inventoryType,
-          item: { ...item },
+          item: {
+            ...item,
+            label:
+              item.metadata?.label ??
+              item.label ??
+              Items[item.name]?.label ??
+              item.name,
+          },
           image: item?.name && `url(${getItemUrl(item) || 'none'})`,
         };
       },

@@ -17,6 +17,7 @@ import CircularProgress from './ProgressCircle';
 interface ShopItem {
     slot: number;
     name: string;
+    label?: string;
     price?: number;
     metadata?: { label?: string };
     image?: string;
@@ -27,6 +28,7 @@ interface ShopItem {
 interface CartItem {
     itemKey: string;
     name: string;
+    label: string;
     price: number;
     quantity: number;
     image?: string;
@@ -372,6 +374,7 @@ const RightInventory: React.FC = () => {
         const itemKey = item.name + (item.slot ?? '');
         const itemName = item.metadata?.label || item.name;
         const itemPrice = item.price ?? 0;
+        const itemLabel = item.label || item.name;
         const itemImage = getItemUrl(item.name);
         const audio = new Audio(dragSound);
 
@@ -386,7 +389,7 @@ const RightInventory: React.FC = () => {
                     i.itemKey === itemKey ? { ...i, quantity: i.quantity + 1 } : i
                 );
             }
-            return [...prev, { itemKey, name: itemName, price: itemPrice, quantity: 1, image: itemImage }];
+            return [...prev, { itemKey, name: itemName, label: itemLabel, price: itemPrice, quantity: 1, image: itemImage }];
         });
     };
 
@@ -475,7 +478,7 @@ const RightInventory: React.FC = () => {
                                         { item.image && <img src={item.image} alt={item.name} /> }
                                         
                                         <div className="cart-info">
-                                            <p>{item.name}</p>
+                                            <p>{item.label}</p>
                                             
                                             <div className="cart-controls">
                                                 
