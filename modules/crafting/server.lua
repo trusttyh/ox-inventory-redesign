@@ -43,15 +43,13 @@ local function createCraftingBench(id, data)
         end
 
         -- Register crafting bench inventory if configured
-        -- if data.inventory then -- no need to check, always creates with defaults
-            local invName = ('crafting:%s'):format(id)
-            CraftingInventories[id] = {
-                name = invName,
-                label = data.label or 'Crafting Bench',
-                slots = data.inventory.slots or 50,
-                maxWeight = data.inventory.maxWeight or 25000,
-            }
-        -- end
+        local invName = ('crafting:%s'):format(id)
+        CraftingInventories[id] = {
+            name = invName,
+            label = data.label or 'Crafting Bench',
+            slots = data.inventory?.slots or 50,
+            maxWeight = data.inventory?.maxWeight or 25000,
+        }
 
         CraftingBenches[id] = data
     end
