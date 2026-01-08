@@ -94,7 +94,7 @@ const InventoryGrid: React.FC<InventoryGridProps> = ({
     if (inventory.type === InventoryType.CONTAINER) return 'Storage';
     if (inventory.type === InventoryType.OTHERPLAYER) return 'Robed Pockets';
     if (inventory.type === InventoryType.OTHERPLAYER_HOTBAR) return 'Robed Pockets Hotbar';
-
+    if (inventory.type == 'stash') return inventory.label || 'Stash';
     if (inventory.type === 'drop') return 'Ground';
     if (inventory.type === 'trunk') return 'Trunk';
     if (inventory.type === 'glovebox') return 'Glovebox';
