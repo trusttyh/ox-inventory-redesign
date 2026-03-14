@@ -42,10 +42,10 @@ const resolveItemData = (slot: SlotWithItem): ItemData => {
   };
 };
 
-export const onDrop = async (source: DragSource, target?: DropTarget) => {
+export const onDrop = async (source: DragSource, target?: DropTarget, targetInventoryTypeOverride?: string) => {
   const { inventory: state } = store.getState();
 
-  const { sourceInventory, targetInventory } = getTargetInventory(state, source.inventory, target?.inventory);
+  const { sourceInventory, targetInventory } = getTargetInventory(state, source.inventory, target?.inventory ?? targetInventoryTypeOverride);
 
   const sourceItem = sourceInventory.items[source.item.slot - 1];
   if (!isSlotWithItem(sourceItem, true)) {
