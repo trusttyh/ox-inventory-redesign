@@ -1,5 +1,5 @@
-import React, { RefObject, useRef } from 'react';
-import { DragLayerMonitor, useDragLayer, XYCoord } from 'react-dnd';
+import React from 'react';
+import { useDragLayer, XYCoord } from 'react-dnd';
 import { DragSource } from '../../typings';
 
 interface DragLayerProps {
@@ -40,11 +40,9 @@ export const calculatePointerPosition = (monitor: DragLayerMonitor, childRef: Re
 };
 
 const DragPreview: React.FC = () => {
-  const element = useRef<HTMLDivElement>(null);
-
   const { data, isDragging, currentOffset } = useDragLayer<DragLayerProps>((monitor) => ({
     data: monitor.getItem(),
-    currentOffset: calculatePointerPosition(monitor, element),
+    currentOffset: monitor.getClientOffset(),
     isDragging: monitor.isDragging(),
   }));
 
@@ -53,9 +51,8 @@ const DragPreview: React.FC = () => {
       {isDragging && currentOffset && data.item && (
         <div
           className="item-drag-preview"
-          ref={element}
           style={{
-            transform: `translate(${currentOffset.x}px, ${currentOffset.y}px)`,
+            transform: `translate(calc(${currentOffset.x}px - 50%), calc(${currentOffset.y}px - 50%))`,
             backgroundImage: data.image,
           }}
         />
