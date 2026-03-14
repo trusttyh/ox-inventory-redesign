@@ -30,6 +30,7 @@
 - [x] Finalize Split Control
 - [x] Fixed walking while searching
 - [x] Add hotbar section when viewing another person inventory
+- [x] Fixed CRTL + Click from player inventory to secondary inventory
 
 --- 
 
