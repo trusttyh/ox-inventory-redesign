@@ -133,15 +133,15 @@ export const isSlotWithItem = (slot: Slot, strict: boolean = false): slot is Slo
 export const canStack = (sourceSlot: Slot, targetSlot: Slot) =>
   sourceSlot.name === targetSlot.name && isEqual(sourceSlot.metadata, targetSlot.metadata);
 
-export const findAvailableSlot = (item: Slot, data: ItemData, items: Slot[]) => {
-  // Skip utility slots (1-9) when auto-finding slots, as they should be explicitly targeted
-  const nonUtilityItems = items.filter((target) => !isUtilitySlot(target.slot));
+export const findAvailableSlot = (item: Slot, data: ItemData, items: Slot[], skipUtilitySlots = false) => {
+  // Skip utility slots (1-9) only when targeting player inventory
+  const candidates = skipUtilitySlots ? items.filter((target) => !isUtilitySlot(target.slot)) : items;
 
-  if (!data.stack) return nonUtilityItems.find((target) => target.name === undefined);
+  if (!data.stack) return candidates.find((target) => target.name === undefined);
 
-  const stackableSlot = nonUtilityItems.find((target) => target.name === item.name && isEqual(target.metadata, item.metadata));
+  const stackableSlot = candidates.find((target) => target.name === item.name && isEqual(target.metadata, item.metadata));
 
-  return stackableSlot || nonUtilityItems.find((target) => target.name === undefined);
+  return stackableSlot || candidates.find((target) => target.name === undefined);
 };
 
 export const getTargetInventory = (
