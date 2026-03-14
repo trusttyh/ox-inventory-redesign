@@ -166,7 +166,8 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
       if (inventoryType === InventoryType.SHOP && onCtrlClick) {
         onCtrlClick(item); // Call onCtrlClick for shop items
       } else if (inventoryType !== InventoryType.CRAFTING) {
-        onDrop({ item: item, inventory: inventoryType });
+        const targetOverride = visualInventoryType === 'utility' ? InventoryType.PLAYER : undefined;
+        onDrop({ item: item, inventory: inventoryType }, undefined, targetOverride);
       }
     } else if (event.altKey && isSlotWithItem(item) && inventoryType === 'player') {
       if (onUse) onUse(item);
