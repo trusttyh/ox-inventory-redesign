@@ -107,7 +107,7 @@ const InventoryUtils = () => {
                 
             <div style={{position: 'absolute', width: '100%', height: '100%',display: 'flex', justifyContent: 'center'}}>
                 <div className="man-svg" style={{width: '25vh', height: '40vh', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1 }}>
-                    <img style={{height: '90%', filter: 'drop-shadow(0px 0px 20px rgb(162, 202, 49))'}} src="https://files.fivemerr.com/images/af3633fe-ce18-4bb9-b7f5-a31c45163945.svg" />
+                    <img style={{height: '90%', filter: 'drop-shadow(0px 0px 20px rgb(162, 202, 49))'}} src="https://files.catbox.moe/2benql.svg" />
                 </div>
             </div>
 
