@@ -16,7 +16,6 @@
 > These features have not yet been started or implentmented.
 
 - [ ] Make it so when armor is in the armor slot, it is equipped
-- [ ] Make it so when a parachute is inside of the parachute slot, it equips the parachute
 
 --- 
 
@@ -31,6 +30,7 @@
 - [x] Fixed walking while searching
 - [x] Add hotbar section when viewing another person inventory
 - [x] Fixed CRTL + Click from player inventory to secondary inventory
+- [x] Make it so when a parachute is inside of the parachute slot, it equips the parachute
 
 --- 
 

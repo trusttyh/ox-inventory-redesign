@@ -1624,10 +1624,12 @@ RegisterNetEvent('ox_inventory:setPlayerInventory', function(currentDrops, inven
             end
         end
 
-        if client.parachute and GetPedParachuteState(playerPed) ~= -1 then
-            Utils.DeleteEntity(client.parachute[1])
-            client.parachute = false
-        end
+		if client.parachute and GetPedParachuteState(playerPed) ~= -1 then
+			Utils.DeleteEntity(client.parachute[1])
+			client.parachute = false
+			TriggerServerEvent('ox_inventory:removeParachute')
+            RemoveWeaponFromPed(cache.ped, `GADGET_PARACHUTE`)
+		end
 
         if EnableWeaponWheel then return end
 
@@ -2027,6 +2029,48 @@ lib.callback.register('ox_inventory:startCrafting', function(id, recipe)
     })
 end)
 
+local function checkParachute(equip)
+    local restrictions = SlotRestrictions.fetch()
+    local slot = restrictions["9"]
+    local whitelistedItems = (slot and slot.restrictions and slot.restrictions.type == "allowed_items") and slot.restrictions.items or {}
+    local chute = `GADGET_PARACHUTE`
+    local model = `p_parachute_s`
+    local defualtTint = -1
+
+    if equip then
+        local item = exports.ox_inventory:Search('slots', whitelistedItems)
+        local itemData = item[1]
+
+        if item then
+            if not client.parachute then
+                -- https://github.com/overextended/ox_inventory/blob/6768a12021d53bfd8831b39e41859bd35491eeed/modules/items/client.lua#L114
+                SetPlayerParachuteTintIndex(PlayerData.id, defualtTint)
+                GiveWeaponToPed(cache.ped, chute, 0, true, false)
+                SetPedGadget(cache.ped, chute, true)
+
+                lib.requestModel(model)
+                local entity = CreateParachuteBagObject(cache.ped, true, true)
+                client.parachute = { entity, itemData?.metadata?.type or defualtTint }
+
+                if itemData?.metadata?.type then
+                    SetPlayerParachuteTintIndex(PlayerData.id, itemData.metadata.type)
+                end
+            end
+        end
+    else
+        if client.parachute then
+            RemoveWeaponFromPed(cache.ped, `GADGET_PARACHUTE`)
+            Utils.DeleteEntity(client.parachute[1])
+            client.parachute = nil
+        end
+    end
+end
+
+RegisterNetEvent('ox_inventory:checkParachute', function()
+    while PlayerData.loaded == false do Wait(100) end
+    checkParachute(true)
+end)
+
 local swapActive = false
 
 ---Synchronise and validate all item movement between the NUI and server.
@@ -2094,6 +2138,15 @@ RegisterNUICallback('swapItems', function(data, cb)
         else
             lib.notify({ type = 'error', description = locale(response) })
         end
+    end
+
+    -- ox_inventory has a swapItems hook to use but fuck it!
+    if data.toSlot == 9 then
+        checkParachute(true)
+    end
+
+    if data.fromSlot == 9 then
+        checkParachute(false)
     end
 end)
 

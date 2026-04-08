@@ -129,6 +129,11 @@ function server.setPlayerInventory(player, data)
         if server.syncInventory then server.syncInventory(inv) end
         TriggerClientEvent('ox_inventory:setPlayerInventory', player.source, Inventory.Drops, inventory, totalWeight,
             inv.player)
+
+        local parachuteSlot = inventory[9]
+        if parachuteSlot and parachuteSlot.name then
+            TriggerClientEvent('ox_inventory:checkParachute', player.source)
+        end
     end
 end
 
@@ -514,6 +519,14 @@ RegisterNetEvent('ox_inventory:usedItemInternal', function(slot)
     TriggerEvent('ox_inventory:usedItem', inventory.id, item.name, item.slot, next(item.metadata) and item.metadata)
 
     inventory.usingItem = nil
+end)
+
+RegisterNetEvent('ox_inventory:removeParachute', function ()
+    local slot = exports.ox_inventory:GetSlot(source, 9)
+
+    if slot then
+        exports.ox_inventory:RemoveItem(source, slot.name, 1, nil, 9)
+    end
 end)
 
 ---@param source number
