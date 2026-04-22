@@ -50,10 +50,13 @@ AddEventHandler("ND:moneyChange", function(src, account, amount, changeType, rea
         changeType == "add" and item + amount)
 end)
 
-AddEventHandler("ND:updateCharacter", function(character)
+AddEventHandler("ND:updateCharacter", function(character, updatedData)
+    local validUpdateData = { ["job"] = true, ["groups"] = true, ["jobInfo"] = true }
+    if not validUpdateData[updatedData] then return end
+	
     local inventory = Inventory(character.source)
-    if not inventory then return end
-    inventory.player.groups = reorderGroups(character.groups)
+	if not inventory then return end
+	inventory.player.groups = reorderGroups(character.groups)
 end)
 
 ---@diagnostic disable-next-line: duplicate-set-field

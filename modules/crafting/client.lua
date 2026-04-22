@@ -161,9 +161,9 @@ local function createCraftingBench(id, data)
                     zone.options = {
                         {
                             label = zone.label or locale('open_crafting_bench'),
-                            canInteract = data.groups and function()
-                                return client.hasGroup(data.groups)
-                            end or nil,
+    						canInteract = (zone.groups or data.groups) and function()
+    							return client.hasGroup(zone.groups or data.groups)
+    						end or nil,
                             onSelect = function()
                                 client.openInventory('crafting', { id = id, index = i })
                             end,

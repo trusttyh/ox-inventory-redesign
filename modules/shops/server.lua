@@ -2,6 +2,7 @@ if not lib then return end
 
 local Items = require 'modules.items.server'
 local Inventory = require 'modules.inventory.server'
+local TriggerEventHooks = require 'modules.hooks.server'
 local Shops = {}
 local locations = shared.target and 'targets' or 'locations'
 
@@ -134,9 +135,9 @@ exports('RegisterShop', function(shopType, shopDetails)
 end)
 
 lib.callback.register('ox_inventory:openShop', function(source, data)
-    local left, shop = Inventory(source)
+    local playerInv, shop = Inventory(source)
 
-    if not left then return end
+    if not playerInv then return end
 
     if data then
         shop = Shops[data.type]
@@ -152,17 +153,17 @@ lib.callback.register('ox_inventory:openShop', function(source, data)
         ---@cast shop OxShop
 
         if shop.groups then
-            local group = server.hasGroup(left, shop.groups)
+            local group = server.hasGroup(playerInv, shop.groups)
             if not group then return end
         end
 
         if shop.workplace then
-            local workplace = server.hasWorkplace(left, shop.workplace)
+            local workplace = server.hasWorkplace(playerInv, shop.workplace)
             if not workplace then return end
         end
 
         if shop.reqDuty then
-            local group = server.hasGroup(left, shop.groups)
+            local group = server.hasGroup(playerInv, shop.groups)
             if group then
                 local onDuty = server.isOnDuty(source, group)
                 if not onDuty then return end
@@ -194,22 +195,36 @@ lib.callback.register('ox_inventory:openShop', function(source, data)
         filteredShop.items = filteredItems
         filteredShop.slots = #filteredItems
 
+        local shopType, shopId = shop.id:match('^(.-) (%d-)$')
+        local hookPayload = {
+            source = source,
+            shopId = shopId,
+			shopType = shopType,
+            label = filteredShop.label,
+            slots = filteredShop.slots,
+            items = filteredShop.items,
+            groups = filteredShop.groups,
+            coords = filteredShop.coords,
+            distance = filteredShop.distance
+        }
+
+        if not TriggerEventHooks('openShop', hookPayload) then return end
+
         ---@diagnostic disable-next-line: assign-type-mismatch
-        left:openInventory(left)
-        left.currentShop = shop.id
+        playerInv:openInventory(playerInv)
+        playerInv.currentShop = shop.id
 
         return {
-                label = left.label,
-                type = left.type,
-                slots = left.slots,
-                weight = left.weight,
-                maxWeight = left.maxWeight
+                label = playerInv.label,
+                type = playerInv.type,
+                slots = playerInv.slots,
+                weight = playerInv.weight,
+                maxWeight = playerInv.maxWeight
             },
             filteredShop
     end
 
-    return { label = left.label, type = left.type, slots = left.slots, weight = left.weight, maxWeight = left.maxWeight },
-        shop
+    return { label = playerInv.label, type = playerInv.type, slots = playerInv.slots, weight = playerInv.weight, maxWeight = playerInv.maxWeight }, shop
 end)
 
 local function canAffordItem(inv, currency, price)

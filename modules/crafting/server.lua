@@ -6,6 +6,13 @@ local PlayerCraftQueues = {} -- Store active craft queues per player
 local Items = require 'modules.items.server'
 local Inventory = require 'modules.inventory.server'
 
+---@param bench table
+---@param index number
+---@return table?
+local function getCraftingGroups(bench, index)
+	return (shared.target and bench.zones) and bench.zones[index].groups or bench.groups
+end
+
 ---@param id number
 ---@param data table
 local function createCraftingBench(id, data)
@@ -85,7 +92,7 @@ lib.callback.register('ox_inventory:openCraftingBench', function(source, id, ind
     if not left then return end
 
     if bench then
-        local groups = bench.groups
+        local groups = getCraftingGroups(bench, index)
         local coords = getCraftingCoords(source, bench, index)
 
         if not coords then return end
@@ -172,7 +179,7 @@ lib.callback.register('ox_inventory:craftItem', function(source, id, index, reci
     if not left then return end
 
     if bench then
-        local groups = bench.groups
+        local groups = getCraftingGroups(bench, index)
         local coords = getCraftingCoords(source, bench, index)
 
         if groups and not server.hasGroup(left, groups) then return end
