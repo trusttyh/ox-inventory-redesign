@@ -16,7 +16,8 @@ return {
         owner = true,
         slots = 70,
         weight = 70000,
-        groups = shared.police
+        groups = shared.police,
+        loc = vec3(461.59, -1000.0, 30.69),
     },
 
     {
@@ -34,7 +35,8 @@ return {
         owner = true,
         slots = 70,
         weight = 70000,
-        groups = shared.police
+        groups = shared.police,
+        loc = vec3(1841.51, 3682.08, 34.19),
     },
 
     {
@@ -52,7 +54,8 @@ return {
         owner = true,
         slots = 70,
         weight = 70000,
-        groups = shared.police
+        groups = shared.police,
+        loc = vec3(-436.32, 6009.79, 37.0),
     },
 
     {
@@ -70,7 +73,8 @@ return {
         owner = true,
         slots = 70,
         weight = 70000,
-        groups = shared.police
+        groups = shared.police,
+        loc = vec3(360.08, -1592.9, 25.45),
     },
 
     {
@@ -88,7 +92,8 @@ return {
         owner = true,
         slots = 70,
         weight = 70000,
-        groups = shared.police
+        groups = shared.police,
+        loc = vec3(844.8, -1286.55, 28.24),
     },
 
     {
@@ -106,7 +111,8 @@ return {
         owner = true,
         slots = 70,
         weight = 70000,
-        groups = shared.police
+        groups = shared.police,
+        loc = vec3(-1061.09, -247.43, 39.74),
     },
 
     -- Police Lockers End --
@@ -129,7 +135,8 @@ return {
         slots = 70,
         weight = 70000,
         groups = "ems",
-        workplace = "safd"
+        workplace = "safd",
+        loc = vec3(1142.12, -1539.54, 35.03),
     },
 
     -- EMS Lockers End --
@@ -171,7 +178,8 @@ return {
         slots = 70,
         weight = 70000,
         groups = "government",
-        workplace = "doj"
+        workplace = "doj",
+        loc = vec3(-586.64, -203.5, 38.23),
     },
 
     -- Government Storage End --
@@ -194,6 +202,7 @@ return {
         weight = 50000,
         groups = "avast_arcade",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-1648.3, -1072.7, 13.76),
     },
 
     {
@@ -213,6 +222,7 @@ return {
         weight = 50000,
         groups = "pizza_this",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(796.54, -749.24, 31.27),
     },
 
     {
@@ -232,6 +242,7 @@ return {
         weight = 50000,
         groups = "greycat_shipping",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(2474.25, 4111.19, 41.24),
     },
 
     {
@@ -251,6 +262,7 @@ return {
         weight = 100000,
         groups = "greycat_shipping",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(2467.2, 4090.4, 34.83),
     },
 
     {
@@ -270,6 +282,7 @@ return {
         weight = 50000,
         groups = "redline",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-595.65, -914.12, 28.14),
     },
 
     {
@@ -289,6 +302,7 @@ return {
         weight = 50000,
         groups = "redline",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-580.84, -928.21, 23.89),
     },
 
     {
@@ -306,7 +320,8 @@ return {
         owner = false,
         slots = 100,
         weight = 100000,
-        groups = "blackline"
+        groups = "blackline",
+        loc = vec3(994.78, -1489.84, 31.5),
     },
 
     {
@@ -326,6 +341,7 @@ return {
         weight = 50000,
         groups = "uwu",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-597.39, -1049.57, 22.34),
     },
 
     {
@@ -343,7 +359,8 @@ return {
         owner = false,
         slots = 150,
         weight = 150000,
-        groups = "uwu"
+        groups = "uwu",
+        loc = vec3(-598.09, -1065.24, 22.34),
     },
 
     {
@@ -363,6 +380,7 @@ return {
         weight = 50000,
         groups = "pdm",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-23.87, -1102.85, 27.27),
     },
 
     {
@@ -380,7 +398,8 @@ return {
         owner = false,
         slots = 100,
         weight = 100000,
-        groups = "pdm"
+        groups = "pdm",
+        loc = vec3(-27.056, -1097.984, 27.274),
     },
 
     {
@@ -400,6 +419,7 @@ return {
         weight = 50000,
         groups = "tuna",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(146.27, -3007.82, 6.04),
     },
 
     {
@@ -418,7 +438,8 @@ return {
         slots = 50,
         weight = 50000,
         groups = "tuna",
-        permissionKey = "JOB_ACCESS_SAFE"
+        permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(145.68, -3011.15, 6.04),
     },
 
     {
@@ -438,6 +459,7 @@ return {
         weight = 50000,
         groups = "triad",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-816.53, -696.26, 32.14),
     },
 
     {
@@ -457,6 +479,7 @@ return {
         weight = 50000,
         groups = "bobs",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(757.46, -775.95, 26.34),
     },
 
     {
@@ -476,6 +499,7 @@ return {
         weight = 50000,
         groups = "dgang",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-2579.55, 1884.19, 163.79),
     },
 
     {
@@ -495,6 +519,7 @@ return {
         weight = 50000,
         groups = "dgang",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-2598.18, 1888.33, 163.75),
     },
 
     {
@@ -514,6 +539,7 @@ return {
         weight = 50000,
         groups = "dgang",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-2604.13, 1923.33, 167.3),
     },
 
     {
@@ -533,6 +559,7 @@ return {
         weight = 50000,
         groups = "dgang",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-2601.2, 1875.18, 163.79),
     },
 
     {
@@ -552,6 +579,7 @@ return {
         weight = 50000,
         groups = "dgang",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-2588.94, 1893.82, 163.72),
     },
 
     {
@@ -571,6 +599,7 @@ return {
         weight = 50000,
         groups = "dgang",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-2590.74, 1911.72, 167.3),
     },
 
     {
@@ -590,6 +619,7 @@ return {
         weight = 50000,
         groups = "hayes",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-1428.22, -459.8, 35.91),
     },
 
     {
@@ -609,6 +639,7 @@ return {
         weight = 50000,
         groups = "harmony",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(1187.2834, 2635.8643, 38.4020),
     },
 
     {
@@ -628,6 +659,7 @@ return {
         weight = 50000,
         groups = "bahama",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-1372.069, -629.168, 29.320),
     },
 
     {
@@ -647,6 +679,7 @@ return {
         weight = 50000,
         groups = "woods_saloon",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-296.13, 6268.23, 31.53),
     },
 
     {
@@ -666,6 +699,7 @@ return {
         weight = 50000,
         groups = "unicorn",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(93.78, -1290.6, 29.26),
     },
 
     {
@@ -685,6 +719,7 @@ return {
         weight = 50000,
         groups = "dynasty8",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-725.948, 261.153, 84.101),
     },
 
     {
@@ -702,7 +737,8 @@ return {
         owner = false,
         slots = 100,
         weight = 100000,
-        groups = "dynasty8"
+        groups = "dynasty8",
+        loc = vec3(-716.067, 266.820, 84.101),
     },
 
     {
@@ -722,6 +758,7 @@ return {
         weight = 50000,
         groups = "tirenutz",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-69.95, -1327.76, 29.27),
     },
 
     {
@@ -741,6 +778,7 @@ return {
         weight = 100000,
         groups = "weed",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-1162.64, -1572.16, 4.66),
     },
 
     {
@@ -760,6 +798,7 @@ return {
         weight = 50000,
         groups = "weed",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-1166.66, -1567.7, 4.66),
     },
 
     {
@@ -779,6 +818,7 @@ return {
         weight = 50000,
         groups = "tequila",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-571.53, 289.01, 79.18),
     },
 
     {
@@ -798,6 +838,7 @@ return {
         weight = 50000,
         groups = "digitalden",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(380.74, -824.81, 29.3),
     },
 
     {
@@ -817,6 +858,7 @@ return {
         weight = 50000,
         groups = "superperformance",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(268.22, -1786.8, 31.27),
     },
 
     {
@@ -836,6 +878,7 @@ return {
         weight = 50000,
         groups = "noodle",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-1184.16, -1149.45, 7.67),
     },
 
     {
@@ -855,6 +898,7 @@ return {
         weight = 50000,
         groups = "autoexotics",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(560.4, -198.45, 58.15),
     },
 
     {
@@ -874,6 +918,7 @@ return {
         weight = 50000,
         groups = "autoexotics",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(540.52, -170.44, 57.68),
     },
 
     {
@@ -893,6 +938,7 @@ return {
         weight = 50000,
         groups = "autoexotics",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(543.46, -184.23, 54.51),
     },
 
     {
@@ -912,6 +958,7 @@ return {
         weight = 50000,
         groups = "rockford_records",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-1007.72, -262.54, 44.8),
     },
 
     {
@@ -931,6 +978,7 @@ return {
         weight = 50000,
         groups = "securoserv",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(31.14, -119.98, 56.22),
     },
 
     {
@@ -950,6 +998,7 @@ return {
         weight = 50000,
         groups = "pepega_pawn",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-330.72, -96.75, 47.05),
     },
 
     {
@@ -969,6 +1018,7 @@ return {
         weight = 50000,
         groups = "garcon_pawn",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-214.22, 6230.05, 31.79),
     },
 
     {
@@ -988,6 +1038,7 @@ return {
         weight = 50000,
         groups = "ottos",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(950.44, -969.84, 39.51),
     },
 
     {
@@ -1007,6 +1058,7 @@ return {
         weight = 50000,
         groups = "ottos",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(952.56, -974.43, 39.5),
     },
 
     {
@@ -1026,6 +1078,7 @@ return {
         weight = 50000,
         groups = "bennys",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-192.8473, -1314.6613, 31.3005),
     },
 
     {
@@ -1045,6 +1098,7 @@ return {
         weight = 50000,
         groups = "bennys",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-192.4591, -1337.8313, 31.3005),
     },
 
     {
@@ -1064,6 +1118,7 @@ return {
         weight = 50000,
         groups = "casino",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(978.63, 50.69, 116.17),
     },
 
     {
@@ -1083,6 +1138,7 @@ return {
         weight = 50000,
         groups = "casino",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(1000.85, 52.78, 75.06),
     },
 
     {
@@ -1102,6 +1158,7 @@ return {
         weight = 50000,
         groups = "prego",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-1123.2, -1460.47, 5.11),
     },
 
     {
@@ -1121,6 +1178,7 @@ return {
         weight = 50000,
         groups = "lasttrain",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-381.858, 268.998, 86.459),
     },
 
     {
@@ -1140,6 +1198,7 @@ return {
         weight = 50000,
         groups = "beanmachine",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(122.380, -1045.557, 29.278),
     },
 
     {
@@ -1159,6 +1218,7 @@ return {
         weight = 50000,
         groups = "burgershot",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-1200.774, -896.674, 13.798),
     },
 
     {
@@ -1178,6 +1238,7 @@ return {
         weight = 50000,
         groups = "rustybrowns",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(164.93, 248.94, 107.05),
     },
 
     {
@@ -1195,7 +1256,8 @@ return {
         owner = false,
         slots = 100,
         weight = 100000,
-        groups = "triad_boxing"
+        groups = "triad_boxing",
+        loc = vec3(1073.0, -2399.06, 25.9),
     },
 
     {
@@ -1215,6 +1277,7 @@ return {
         weight = 50000,
         groups = "odmc",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(1002.536, -128.212, 74.063),
     },
 
     {
@@ -1232,7 +1295,8 @@ return {
         owner = false,
         slots = 100,
         weight = 100000,
-        groups = "odmc"
+        groups = "odmc",
+        loc = vec3(958.58, -108.79, 74.37),
     },
 
     {
@@ -1252,6 +1316,7 @@ return {
         weight = 50000,
         groups = "saints",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-18.51, -1438.82, 31.1),
     },
 
     {
@@ -1269,7 +1334,8 @@ return {
         owner = false,
         slots = 100,
         weight = 100000,
-        groups = "saints"
+        groups = "saints",
+        loc = vec3(-16.51, -1430.47, 31.1),
     },
 
     {
@@ -1289,6 +1355,7 @@ return {
         weight = 50000,
         groups = "lsfc",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(1616.17, 4830.96, 33.14),
     },
 
     {
@@ -1308,6 +1375,7 @@ return {
         weight = 100000,
         groups = "paleto_tuners",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(173.31, 6391.96, 31.27),
     },
 
     {
@@ -1327,6 +1395,7 @@ return {
         weight = 100000,
         groups = "paleto_tuners",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(176.64, 6385.5, 31.27),
     },
 
     {
@@ -1346,6 +1415,7 @@ return {
         weight = 100000,
         groups = "paleto_tuners",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(143.54, 6376.71, 31.27),
     },
 
     {
@@ -1365,6 +1435,7 @@ return {
         weight = 50000,
         groups = "dreamworks",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-700.44, -1399.22, 8.55),
     },
 
     {
@@ -1384,6 +1455,7 @@ return {
         weight = 50000,
         groups = "dreamworks",
         permissionKey = "JOB_ACCESS_SAFE",
+        loc = vec3(-742.05, -1526.34, 5.06),
     },
 
     -- Business Safes / Storages End --
@@ -1406,6 +1478,7 @@ return {
         weight = 100000,
         groups = "avast_arcade",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(-1656.03, -1058.7, 12.16),
     },
 
     {
@@ -1425,6 +1498,7 @@ return {
         weight = 100000,
         groups = "aztecas",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(494.29, -1530.54, 29.29),
     },
 
     {
@@ -1444,6 +1518,7 @@ return {
         weight = 100000,
         groups = "bahama",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(-1377.012, -634.215, 30.320),
     },
 
     {
@@ -1463,6 +1538,7 @@ return {
         weight = 100000,
         groups = "bakery",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(-1259.49, -281.17, 37.38),
     },
 
     {
@@ -1482,6 +1558,7 @@ return {
         weight = 100000,
         groups = "ballers",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(-1.96, -1827.12, 29.15),
     },
 
     {
@@ -1501,6 +1578,7 @@ return {
         weight = 100000,
         groups = "beanmachine",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(123.59, -1039.2, 29.28),
     },
 
     {
@@ -1520,6 +1598,7 @@ return {
         weight = 100000,
         groups = "bowling",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(757.43, -766.4, 26.34),
     },
 
     {
@@ -1539,6 +1618,7 @@ return {
         weight = 100000,
         groups = "burgershot",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(-1192.9, -898.69, 13.8),
     },
 
     {
@@ -1558,6 +1638,7 @@ return {
         weight = 100000,
         groups = "casino",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(1008.64, 72.07, 75.06),
     },
 
     {
@@ -1577,6 +1658,7 @@ return {
         weight = 100000,
         groups = "casino",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(991.05, 24.74, 71.46),
     },
 
     {
@@ -1596,6 +1678,7 @@ return {
         weight = 100000,
         groups = "casino",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(971.52, 68.73, 116.16),
     },
 
     {
@@ -1615,6 +1698,7 @@ return {
         weight = 100000,
         groups = "casino",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(984.24, 74.78, -76.01),
     },
 
     {
@@ -1634,6 +1718,7 @@ return {
         weight = 100000,
         groups = "lasttrain",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(-383.95, 265.61, 86.46),
     },
 
     {
@@ -1653,6 +1738,7 @@ return {
         weight = 100000,
         groups = "mba",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(-289.955, -1936.476, 41.045),
     },
 
     {
@@ -1672,6 +1758,7 @@ return {
         weight = 100000,
         groups = "mba",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(-289.337, -1935.401, 30.146),
     },
 
     {
@@ -1691,6 +1778,7 @@ return {
         weight = 100000,
         groups = "noodle",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(-1183.76, -1155.12, 7.67),
     },
 
     {
@@ -1710,6 +1798,7 @@ return {
         weight = 100000,
         groups = "pizza_this",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(802.49, -758.53, 26.78),
     },
 
     {
@@ -1729,6 +1818,7 @@ return {
         weight = 100000,
         groups = "pizza_this",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(813.35, -749.39, 26.78),
     },
 
     {
@@ -1748,6 +1838,7 @@ return {
         weight = 100000,
         groups = "pizza_this",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(809.33, -761.47, 22.3),
     },
 
     {
@@ -1767,6 +1858,7 @@ return {
         weight = 100000,
         groups = "prego",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(-1124.56, -1458.42, 5.11),
     },
 
     {
@@ -1786,6 +1878,7 @@ return {
         weight = 100000,
         groups = "prego",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(-1119.02, -1452.57, 5.11),
     },
 
     {
@@ -1805,6 +1898,7 @@ return {
         weight = 100000,
         groups = "prego",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(-1120.07, -1456.97, 2.03),
     },
 
     {
@@ -1824,6 +1918,7 @@ return {
         weight = 100000,
         groups = "rockford_records",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(-984.61, -263.24, 38.47),
     },
 
     {
@@ -1843,6 +1938,7 @@ return {
         weight = 100000,
         groups = "rustybrowns",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(158.21, 247.93, 107.05),
     },
 
     {
@@ -1862,6 +1958,7 @@ return {
         weight = 100000,
         groups = "tequila",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(-568.57, 291.2, 79.18),
     },
 
     {
@@ -1881,6 +1978,7 @@ return {
         weight = 100000,
         groups = "triad",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(-810.51, -733.09, 23.78),
     },
 
     {
@@ -1900,6 +1998,7 @@ return {
         weight = 100000,
         groups = "unicorn",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(132.78, -1287.97, 29.27),
     },
 
     {
@@ -1919,6 +2018,7 @@ return {
         weight = 100000,
         groups = "uwu",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(-589.43, -1066.88, 22.34),
     },
 
     {
@@ -1938,6 +2038,7 @@ return {
         weight = 100000,
         groups = "vagos",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(337.75, -1988.88, 24.21),
     },
 
     {
@@ -1957,6 +2058,7 @@ return {
         weight = 100000,
         groups = "woods_saloon",
         permissionKey = "JOB_STORAGE",
+        loc = vec3(-305.63, 6271.79, 31.53),
     },
     -- Restaurants / Cafes / Bars / Clubs Safes / Storages End --
     -- Taco Shop Storage Start --
@@ -1975,6 +2077,7 @@ return {
         owner = false,
         slots = 100,
         weight = 100000,
+        loc = vec3(8.0, -1603.23, 29.38),
     },
     -- Taco Shop Storage End --
     -- Other Business Storages Start --
@@ -1995,6 +2098,7 @@ return {
         weight = 100000,
         groups = "cloud9",
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-61.9327, -2516.3125, 7.4032),
     },
 
     {
@@ -2014,6 +2118,7 @@ return {
         weight = 100000,
         groups = "digitalden",
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(382.66, -830.16, 29.3),
     },
 
     {
@@ -2033,6 +2138,7 @@ return {
         weight = 100000,
         groups = "digitalden",
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(382.15, -818.72, 29.3),
     },
 
     {
@@ -2052,6 +2158,7 @@ return {
         weight = 100000,
         groups = "digitalden",
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(374.35, -818.37, 29.3),
     },
 
     {
@@ -2071,6 +2178,7 @@ return {
         weight = 100000,
         groups = "garcon_pawn",
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-217.28, 6230.52, 31.79),
     },
 
     {
@@ -2090,6 +2198,7 @@ return {
         weight = 100000,
         groups = "jewel",
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-698.615, -902.925, 19.525),
     },
 
     {
@@ -2109,6 +2218,7 @@ return {
         weight = 100000,
         groups = "jewel",
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-707.823, -892.020, 19.525),
     },
 
     {
@@ -2128,6 +2238,7 @@ return {
         weight = 100000,
         groups = "jewel",
         permissionKey = 'JOB_ACCESS_SAFE',
+        loc = vec3(-710.585, -898.925, 19.525),
     },
 
     {
@@ -2147,6 +2258,7 @@ return {
         weight = 100000,
         groups = "jewel",
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-698.491, -899.153, 23.806),
     },
 
     {
@@ -2166,6 +2278,7 @@ return {
         weight = 100000,
         groups = "jewel",
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-703.913, -893.902, 19.525),
     },
 
     {
@@ -2185,6 +2298,7 @@ return {
         weight = 100000,
         groups = "lsfc",
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(1616.95, 4829.26, 33.14),
     },
 
     {
@@ -2204,6 +2318,7 @@ return {
         weight = 100000,
         groups = "pepega_pawn",
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-330.93, -89.35, 47.05),
     },
 
     {
@@ -2223,6 +2338,7 @@ return {
         weight = 100000,
         groups = "sagma",
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-469.44, 35.69, 46.23),
     },
 
     {
@@ -2242,6 +2358,7 @@ return {
         weight = 100000,
         groups = "sagma",
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-469.33, 38.29, 46.23),
     },
 
     {
@@ -2261,6 +2378,7 @@ return {
         weight = 100000,
         groups = "sagma",
         permissionKey = 'JOB_ACCESS_SAFE',
+        loc = vec3(-467.83, 47.58, 46.23),
     },
 
     {
@@ -2280,6 +2398,7 @@ return {
         weight = 100000,
         groups = "sagma",
         permissionKey = 'JOB_ACCESS_SAFE',
+        loc = vec3(-483.25, 63.12, 52.41),
     },
 
     {
@@ -2299,6 +2418,7 @@ return {
         weight = 100000,
         groups = "sagma",
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-467.29, 49.55, 52.41),
     },
 
     {
@@ -2318,6 +2438,7 @@ return {
         weight = 100000,
         groups = "securoserv",
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(20.04, -100.54, 56.18),
     },
 
     {
@@ -2337,6 +2458,7 @@ return {
         weight = 100000,
         groups = "vangelico",
         permissionKey = 'JOB_ACCESS_SAFE',
+        loc = vec3(-383.68, 6052.27, 31.51),
     },
 
     {
@@ -2356,6 +2478,7 @@ return {
         weight = 100000,
         groups = "vangelico",
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-384.58, 6050.94, 31.51),
     },
 
     {
@@ -2375,6 +2498,7 @@ return {
         weight = 100000,
         groups = "vangelico",
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-379.68, 6049.42, 31.51),
     },
 
     {
@@ -2394,6 +2518,7 @@ return {
         weight = 100000,
         groups = "vangelico_grapeseed",
         permissionKey = 'JOB_ACCESS_SAFE',
+        loc = vec3(1648.58, 4875.25, 42.16),
     },
 
     {
@@ -2413,6 +2538,7 @@ return {
         weight = 100000,
         groups = "vangelico_grapeseed",
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(1650.22, 4875.44, 42.16),
     },
 
     {
@@ -2432,6 +2558,7 @@ return {
         weight = 100000,
         groups = "vangelico_grapeseed",
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(1647.05, 4879.75, 42.16),
     },
     -- Other Business Storages End --
     -- Mechanic Storage Start --
@@ -2452,6 +2579,7 @@ return {
         weight = 100000,
         groups = "redline",
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-584.07, -939.57, 23.89),
     },
 
     {
@@ -2470,6 +2598,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-57.5, -1325.07, 29.27),
     },
 
     {
@@ -2488,6 +2617,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-1421.67, -456.38, 35.91),
     },
 
     {
@@ -2506,6 +2636,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(476.67, -1876.93, 26.09),
     },
 
     {
@@ -2524,24 +2655,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
-    },
-
-    {
-        target = {
-            loc = vec3(1176.15, 2635.21, 37.75),
-            length = 1.0,
-            width = 1.0,
-            heading = 0.0,
-            minZ = 36.75,
-            maxZ = 39.55,
-            label = 'Open Storage'
-        },
-        name = 'Open Storage-storage',
-        label = 'Open Storage',
-        owner = false,
-        slots = 100,
-        weight = 100000,
-        permissionKey = 'JOB_STORAGE',
+        loc = vec3(1176.15, 2635.21, 37.75),
     },
 
     {
@@ -2560,6 +2674,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(558.99, -171.67, 54.51),
     },
 
     {
@@ -2578,6 +2693,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(950.91, -979.09, 39.5),
     },
 
     {
@@ -2596,6 +2712,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-205.3346, -1335.6605, 31.300),
     },
 
     {
@@ -2614,6 +2731,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(163.12, 6364.78, 31.27),
     },
 
     {
@@ -2632,6 +2750,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-726.39, -1505.64, 5.06),
     },
 
     {
@@ -2650,6 +2769,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-593.45, -933.6, 28.14),
     },
 
     {
@@ -2668,6 +2788,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-586.19, -931.62, 23.96),
     },
 
     {
@@ -2686,6 +2807,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-585.15, -917.51, 23.96),
     },
 
     {
@@ -2704,6 +2826,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-578.07, -911.8, 23.89),
     },
 
     {
@@ -2722,6 +2845,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-585.85, -924.58, 23.89),
     },
 
     {
@@ -2740,6 +2864,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-57.5, -1325.07, 29.27),
     },
 
     {
@@ -2758,6 +2883,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-58.01, -1328.92, 29.27),
     },
 
     {
@@ -2776,6 +2902,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-58.01, -1328.92, 29.27),
     },
 
     {
@@ -2794,6 +2921,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-59.78, -1336.95, 26.85),
     },
 
     {
@@ -2812,6 +2940,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-1421.67, -456.38, 35.91),
     },
 
     {
@@ -2830,6 +2959,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-1418.77, -454.4, 35.91),
     },
 
     {
@@ -2848,6 +2978,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-1418.77, -454.4, 35.91),
     },
 
     {
@@ -2866,6 +2997,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-1407.85, -447.14, 35.91),
     },
 
     {
@@ -2884,6 +3016,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(476.67, -1876.93, 26.09),
     },
 
     {
@@ -2902,6 +3035,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(470.12, -1887.23, 26.09),
     },
 
     {
@@ -2920,6 +3054,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(470.12, -1887.23, 26.09),
     },
 
     {
@@ -2938,6 +3073,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(471.88, -1879.14, 26.25),
     },
 
     {
@@ -2956,6 +3092,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(1176.15, 2635.21, 37.75),
     },
 
     {
@@ -2974,6 +3111,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(1172.47, 2635.59, 37.8),
     },
 
     {
@@ -2992,6 +3130,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(1172.47, 2635.59, 37.8),
     },
 
     {
@@ -3010,6 +3149,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(1184.63, 2639.38, 37.75),
     },
 
     {
@@ -3028,6 +3168,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(1176.15, 2635.21, 37.75),
     },
 
     {
@@ -3046,6 +3187,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(543.13, -166.62, 57.68),
     },
 
     {
@@ -3064,6 +3206,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(542.45, -173.23, 54.51),
     },
 
     {
@@ -3082,6 +3225,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(555.79, -179.43, 54.51),
     },
 
     {
@@ -3100,6 +3244,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(555.81, -187.15, 54.51),
     },
 
     {
@@ -3118,6 +3263,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(560.35, -183.3, 54.51),
     },
 
     {
@@ -3136,6 +3282,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(560.11, -190.7, 54.51),
     },
 
     {
@@ -3154,6 +3301,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(560.02, -198.82, 54.51),
     },
 
     {
@@ -3172,6 +3320,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(555.38, -172.12, 54.51),
     },
 
     {
@@ -3190,6 +3339,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(564.81, -200.39, 50.31),
     },
 
     {
@@ -3208,6 +3358,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(906.83, -968.17, 39.5),
     },
 
     {
@@ -3226,6 +3377,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(936.28, -984.94, 39.5),
     },
 
     {
@@ -3244,6 +3396,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(922.84, -985.68, 39.5),
     },
 
     {
@@ -3262,6 +3415,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(955.57, -955.3, 39.5),
     },
 
     {
@@ -3280,6 +3434,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(947.77, -972.41, 39.5),
     },
 
     {
@@ -3298,6 +3453,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(962.9, -975.17, 39.5),
     },
 
     {
@@ -3316,6 +3472,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-205.3346, -1335.6605, 31.300),
     },
 
     {
@@ -3334,6 +3491,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-206.7109, -1339.2489, 31.3015),
     },
 
     {
@@ -3352,6 +3510,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-206.7109, -1339.2489, 31.3015),
     },
 
     {
@@ -3370,6 +3529,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-216.9994, -1337.8951, 31.3005),
     },
 
     {
@@ -3388,6 +3548,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-223.6948, -1339.1002, 31.3013),
     },
 
     {
@@ -3406,6 +3567,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-229.7649, -1320.1306, 31.3005),
     },
 
     {
@@ -3424,6 +3586,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-724.27, -1511.46, 5.06),
     },
 
     {
@@ -3442,6 +3605,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-728.77, -1504.35, 5.08),
     },
 
     {
@@ -3460,6 +3624,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(163.12, 6364.78, 31.27),
     },
 
     {
@@ -3478,6 +3643,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(156.24, 6361.33, 31.27),
     },
 
     {
@@ -3496,6 +3662,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(156.24, 6361.33, 31.27),
     },
 
     {
@@ -3514,6 +3681,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(166.89, 6381.57, 31.27),
     },
 
     {
@@ -3532,6 +3700,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(151.7, 6361.63, 31.27),
     },
 
     {
@@ -3550,6 +3719,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(156.74, 6370.57, 31.27),
     },
 
     {
@@ -3568,6 +3738,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(167.2, 6366.75, 31.27),
     },
 
     {
@@ -3586,6 +3757,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(144.49, 6384.49, 31.27),
     },
 
     {
@@ -3604,6 +3776,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-726.39, -1505.64, 5.06),
     },
 
     {
@@ -3622,6 +3795,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-755.39, -1516.27, 5.06),
     },
 
     {
@@ -3640,6 +3814,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-755.39, -1516.27, 5.06),
     },
 
     {
@@ -3658,6 +3833,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-764.27, -1522.74, 5.06),
     },
 
     {
@@ -3676,6 +3852,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-751.32, -1530.63, 5.06),
     },
 
     {
@@ -3694,6 +3871,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-722.64, -1518.13, 5.06),
     },
 
     {
@@ -3712,6 +3890,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-724.27, -1511.46, 5.06),
     },
 
     {
@@ -3730,6 +3909,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-728.77, -1504.35, 5.08),
     },
 
     {
@@ -3748,6 +3928,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-593.45, -933.6, 28.14),
     },
 
     {
@@ -3766,6 +3947,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-586.19, -931.62, 23.96),
     },
 
     {
@@ -3784,6 +3966,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-585.15, -917.51, 23.96),
     },
 
     {
@@ -3802,6 +3985,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-578.07, -911.8, 23.89),
     },
 
     {
@@ -3820,6 +4004,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-585.85, -924.58, 23.89),
     },
 
     {
@@ -3838,6 +4023,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(128.58, -3011.16, 7.04),
     },
 
     {
@@ -3856,6 +4042,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(121.19, -3028.03, 7.04),
     },
 
     {
@@ -3874,6 +4061,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(129.55, -3031.51, 7.04),
     },
 
     {
@@ -3892,6 +4080,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(133.37, -3051.24, 7.04),
     },
 
     {
@@ -3910,6 +4099,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-58.01, -1328.92, 29.27),
     },
 
     {
@@ -3928,6 +4118,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-59.78, -1336.95, 26.85),
     },
 
     {
@@ -3946,6 +4137,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-1418.77, -454.4, 35.91),
     },
 
     {
@@ -3964,6 +4156,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-1407.85, -447.14, 35.91),
     },
 
     {
@@ -3982,6 +4175,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(470.12, -1887.23, 26.09),
     },
 
     {
@@ -4000,6 +4194,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(471.88, -1879.14, 26.25),
     },
 
     {
@@ -4018,6 +4213,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(1172.47, 2635.59, 37.8),
     },
 
     {
@@ -4036,6 +4232,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(1184.63, 2639.38, 37.75),
     },
 
     {
@@ -4054,6 +4251,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(543.13, -166.62, 57.68),
     },
 
     {
@@ -4072,6 +4270,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(542.45, -173.23, 54.51),
     },
 
     {
@@ -4090,6 +4289,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(555.79, -179.43, 54.51),
     },
 
     {
@@ -4108,6 +4308,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(555.81, -187.15, 54.51),
     },
 
     {
@@ -4126,6 +4327,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(560.35, -183.3, 54.51),
     },
 
     {
@@ -4144,6 +4346,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(560.11, -190.7, 54.51),
     },
 
     {
@@ -4162,6 +4365,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(560.02, -198.82, 54.51),
     },
 
     {
@@ -4180,6 +4384,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(555.38, -172.12, 54.51),
     },
 
     {
@@ -4198,6 +4403,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(564.81, -200.39, 50.31),
     },
 
     {
@@ -4216,6 +4422,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(906.83, -968.17, 39.5),
     },
 
     {
@@ -4234,6 +4441,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(936.28, -984.94, 39.5),
     },
 
     {
@@ -4252,6 +4460,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(922.84, -985.68, 39.5),
     },
 
     {
@@ -4270,6 +4479,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(955.57, -955.3, 39.5),
     },
 
     {
@@ -4288,6 +4498,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(947.77, -972.41, 39.5),
     },
 
     {
@@ -4306,6 +4517,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(962.9, -975.17, 39.5),
     },
 
     {
@@ -4324,6 +4536,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-206.7109, -1339.2489, 31.3015),
     },
 
     {
@@ -4342,6 +4555,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-216.9994, -1337.8951, 31.3005),
     },
 
     {
@@ -4360,6 +4574,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-223.6948, -1339.1002, 31.3013),
     },
 
     {
@@ -4378,6 +4593,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-229.7649, -1320.1306, 31.3005),
     },
 
     {
@@ -4396,6 +4612,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-724.27, -1511.46, 5.06),
     },
 
     {
@@ -4414,6 +4631,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-728.77, -1504.35, 5.08),
     },
 
     {
@@ -4432,6 +4650,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(156.24, 6361.33, 31.27),
     },
 
     {
@@ -4450,6 +4669,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(166.89, 6381.57, 31.27),
     },
 
     {
@@ -4468,6 +4688,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(151.7, 6361.63, 31.27),
     },
 
     {
@@ -4486,6 +4707,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(156.74, 6370.57, 31.27),
     },
 
     {
@@ -4504,6 +4726,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(167.2, 6366.75, 31.27),
     },
 
     {
@@ -4522,6 +4745,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(144.49, 6384.49, 31.27),
     },
 
     {
@@ -4540,6 +4764,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-755.39, -1516.27, 5.06),
     },
 
     {
@@ -4558,6 +4783,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-764.27, -1522.74, 5.06),
     },
 
     {
@@ -4576,6 +4802,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-751.32, -1530.63, 5.06),
     },
 
     {
@@ -4594,6 +4821,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-722.64, -1518.13, 5.06),
     },
 
     {
@@ -4612,6 +4840,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-724.27, -1511.46, 5.06),
     },
 
     {
@@ -4630,6 +4859,7 @@ return {
         slots = 100,
         weight = 100000,
         permissionKey = 'JOB_STORAGE',
+        loc = vec3(-728.77, -1504.35, 5.08),
     },
     -- Mechanic Storage End --
 }
