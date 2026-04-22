@@ -393,7 +393,7 @@ Inventory.Stashes = setmetatable(lib.load('data.stashes'), {
                     stash.target = nil
 
                     if not stash.loc then
-                        print(('Stash %s does not have coords defined, defaulting to 0, 0, 0.'):format(id))
+                        print(('Stash %s does not have coords defined, defaulting to 0, 0, 0.'):format(stash.name))
                     end
 
                     stash.point = lib.points.new({
