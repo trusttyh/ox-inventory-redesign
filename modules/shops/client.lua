@@ -20,7 +20,27 @@ for shopType, shopData in pairs(lib.load('data.shops') or {} --[[@as table<strin
         shop.targets = shopData.targets
         shop.peds = shopData.peds
     else
-        shop.locations = shopData.locations
+        local locations = {}
+
+        for k, v in pairs(shopData.peds or {}) do
+            locations[k] = {
+                model = v.model,
+                coords = v.coords,
+                heading = v.heading,
+                distance = v.distance,
+                renderDistance = v.renderDistance,
+                label = v.label,
+                icon = v.icon,
+                animation = v.animation
+            }
+
+            if shopData.model then
+                locations[k].loc = v.coords
+                locations[k].coords = nil
+            end
+        end
+
+        shop.locations = locations
     end
 
     shopTypes[shopType] = shop
@@ -288,11 +308,12 @@ local function refreshShops()
                 local location = shop.locations[i]
                 local coords = location.coords or location
                 local locationLabel = shop.label or locale('open_label', shop.name)
+                local renderDistance = location.distance or 25
                 id += 1
 
-                shops[id] = lib.points.new(coords, 16, {
+                shops[id] = lib.points.new(coords, renderDistance, {
                     coords = coords,
-                    distance = 16,
+                    distance = renderDistance,
                     inv = 'shop',
                     invId = i,
                     type = type,
@@ -303,6 +324,7 @@ local function refreshShops()
                             locale('interact_prompt', GetControlInstructionalButton(0, 38, true):sub(3)))
                     },
                     nearby = Utils.nearbyMarker,
+                    onExit = Utils.onExitMarker,
                     blip = blip and createBlip(blip, coords)
                 })
             end

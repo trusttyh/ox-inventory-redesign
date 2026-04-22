@@ -216,7 +216,7 @@ function Utils.nearbyMarker(point)
         point.marker.colour[1], point.marker.colour[2], point.marker.colour[3], 222, false, false, 0, true, false, false,
         false)
 
-    if point.isClosest and point.currentDistance < 1.2 then
+    if point.isClosest and point.currentDistance < (point.distance or 2.0) then
         if not hasTextUi then
             hasTextUi = point
             lib.showTextUI(point.prompt.message, point.prompt.options)
@@ -233,7 +233,11 @@ function Utils.nearbyMarker(point)
                 end
             end)
         end
-    elseif hasTextUi == point then
+    end
+end
+
+function Utils.onExitMarker(point)
+    if hasTextUi == point then
         hasTextUi = nil
         lib.hideTextUI()
     end
