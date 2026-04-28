@@ -1,5 +1,5 @@
-import React from 'react';
-import { useDragLayer, XYCoord } from 'react-dnd';
+import React, { RefObject } from 'react';
+import { DragLayerMonitor, useDragLayer, XYCoord } from 'react-dnd';
 import { DragSource } from '../../typings';
 
 interface DragLayerProps {
