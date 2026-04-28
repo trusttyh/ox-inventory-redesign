@@ -201,10 +201,13 @@ input[type='number']::-webkit-outer-spin-button {
   }
 }
 
-// .left-inventory {
-//   transform: perspective(1000px) skewX(0deg) rotateY(10deg) rotateX(0deg);
-//   transform-origin: center;
-// }
+.left-inventory {
+  // transform: perspective(1000px) skewX(0deg) rotateY(10deg) rotateX(0deg);
+  // transform-origin: center;
+  max-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 
 // .utils-inventory {
 //   transform: perspective(1000px)  skewX(0deg) rotateY(-10deg) rotateX(0deg);
