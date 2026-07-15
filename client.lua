@@ -2071,6 +2071,74 @@ RegisterNetEvent('ox_inventory:checkParachute', function()
     checkParachute(true)
 end)
 
+-- Amount of armor applied per item. Overridable per-item via metadata.armor.
+local armorValues = {
+    armor = 50,
+    heavyarmor = 100,
+    pdarmor = 100,
+}
+
+local function checkArmor(equip)
+    local restrictions = SlotRestrictions.fetch()
+    local slot = restrictions["7"]
+    local whitelistedItems = (slot and slot.restrictions and slot.restrictions.type == "allowed_items") and slot.restrictions.items or {}
+
+    if equip then
+        -- Already equipped: don't re-show the progress bar or top armor back up on
+        -- inventory re-syncs (e.g. picking items up, moving things around).
+        if client.armour then return end
+
+        -- Don't apply/show a progress bar to a dead ped (e.g. rejoining while dead).
+        if PlayerData.dead then return end
+
+        local slotData = PlayerData.inventory[7]
+
+        if not slotData or not slotData.name then return end
+
+        local isAllowed = false
+        for i = 1, #whitelistedItems do
+            if slotData.name == whitelistedItems[i] then
+                isAllowed = true
+                break
+            end
+        end
+
+        if not isAllowed then return end
+
+        local value = slotData.metadata?.armor or armorValues[slotData.name] or 100
+
+        local success = lib.progressBar({
+            duration = slotData.metadata?.armorTime or 3500,
+            label = 'Putting on armor',
+            canCancel = false,
+            disable = {
+                move = false,
+                car = false,
+                combat = false,
+                mouse = false,
+            },
+        })
+
+        if success then
+            SetPedArmour(cache.ped, value)
+            client.armour = value
+        end
+    else
+        if client.armour then
+            SetPedArmour(cache.ped, 0)
+            client.armour = nil
+        end
+    end
+end
+
+RegisterNetEvent('ox_inventory:checkArmor', function()
+    while PlayerData.loaded == false do Wait(100) end
+    -- Wait until the ped is actually spawned/active so the progress bar isn't
+    -- fired during a loading screen or spawn fade.
+    while not NetworkIsPlayerActive(PlayerId()) do Wait(100) end
+    checkArmor(true)
+end)
+
 local swapActive = false
 
 ---Synchronise and validate all item movement between the NUI and server.
@@ -2147,6 +2215,14 @@ RegisterNUICallback('swapItems', function(data, cb)
 
     if data.fromSlot == 9 then
         checkParachute(false)
+    end
+
+    if data.toSlot == 7 then
+        checkArmor(true)
+    end
+
+    if data.fromSlot == 7 then
+        checkArmor(false)
     end
 end)
 

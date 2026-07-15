@@ -134,6 +134,11 @@ function server.setPlayerInventory(player, data)
         if parachuteSlot and parachuteSlot.name then
             TriggerClientEvent('ox_inventory:checkParachute', player.source)
         end
+
+        local armorSlot = inventory[7]
+        if armorSlot and armorSlot.name then
+            TriggerClientEvent('ox_inventory:checkArmor', player.source)
+        end
     end
 end
 
